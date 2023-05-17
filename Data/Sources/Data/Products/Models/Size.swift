@@ -6,9 +6,20 @@
 //
 
 import Foundation
+import Domain
 
 struct Size: Codable {
     var available: Bool
     var size: String
     var sku: String
+}
+
+extension Size {
+    func toDomain() -> Domain.Size {
+        Domain.Size(
+            available: available,
+            size: size,
+            sku: sku
+        )
+    }
 }
