@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct ProductsResponse: Codable {
+public struct ProductsResponse: Codable {
     var products: [Product]
 }

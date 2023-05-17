@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Provider {
+public class Provider {
     
     func request<V: Codable>(
         target: API,
