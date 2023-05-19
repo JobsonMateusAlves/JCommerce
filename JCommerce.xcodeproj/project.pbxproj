@@ -10,12 +10,14 @@
 		F60B7D4E2A146AD0004378A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D4D2A146AD0004378A9 /* AppDelegate.swift */; };
 		F60B7D502A146AD0004378A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D4F2A146AD0004378A9 /* SceneDelegate.swift */; };
 		F60B7D522A146AD0004378A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D512A146AD0004378A9 /* ViewController.swift */; };
-		F60B7D552A146AD0004378A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F60B7D532A146AD0004378A9 /* Main.storyboard */; };
 		F60B7D572A146AD3004378A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F60B7D562A146AD3004378A9 /* Assets.xcassets */; };
 		F60B7D5A2A146AD3004378A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F60B7D582A146AD3004378A9 /* LaunchScreen.storyboard */; };
 		F60B7D652A146AD3004378A9 /* JCommerceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D642A146AD3004378A9 /* JCommerceTests.swift */; };
 		F60B7D6F2A146AD3004378A9 /* JCommerceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D6E2A146AD3004378A9 /* JCommerceUITests.swift */; };
 		F60B7D712A146AD3004378A9 /* JCommerceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D702A146AD3004378A9 /* JCommerceUITestsLaunchTests.swift */; };
+		F63101032A17341800CAB1BC /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = F63101022A17341800CAB1BC /* Presentation */; };
+		F63101052A17341D00CAB1BC /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = F63101042A17341D00CAB1BC /* Data */; };
+		F63101072A17341D00CAB1BC /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = F63101062A17341D00CAB1BC /* Domain */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,6 @@
 		F60B7D4D2A146AD0004378A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F60B7D4F2A146AD0004378A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F60B7D512A146AD0004378A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F60B7D542A146AD0004378A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F60B7D562A146AD3004378A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F60B7D592A146AD3004378A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F60B7D5B2A146AD3004378A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F63101072A17341D00CAB1BC /* Domain in Frameworks */,
+				F63101052A17341D00CAB1BC /* Data in Frameworks */,
+				F63101032A17341800CAB1BC /* Presentation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,7 @@
 				F60B7D632A146AD3004378A9 /* JCommerceTests */,
 				F60B7D6D2A146AD3004378A9 /* JCommerceUITests */,
 				F60B7D4B2A146AD0004378A9 /* Products */,
+				F63101012A17341800CAB1BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,7 +113,6 @@
 				F60B7D4D2A146AD0004378A9 /* AppDelegate.swift */,
 				F60B7D4F2A146AD0004378A9 /* SceneDelegate.swift */,
 				F60B7D512A146AD0004378A9 /* ViewController.swift */,
-				F60B7D532A146AD0004378A9 /* Main.storyboard */,
 				F60B7D562A146AD3004378A9 /* Assets.xcassets */,
 				F60B7D582A146AD3004378A9 /* LaunchScreen.storyboard */,
 				F60B7D5B2A146AD3004378A9 /* Info.plist */,
@@ -133,6 +137,13 @@
 			path = JCommerceUITests;
 			sourceTree = "<group>";
 		};
+		F63101012A17341800CAB1BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +160,11 @@
 			dependencies = (
 			);
 			name = JCommerce;
+			packageProductDependencies = (
+				F63101022A17341800CAB1BC /* Presentation */,
+				F63101042A17341D00CAB1BC /* Data */,
+				F63101062A17341D00CAB1BC /* Domain */,
+			);
 			productName = JCommerce;
 			productReference = F60B7D4A2A146AD0004378A9 /* JCommerce.app */;
 			productType = "com.apple.product-type.application";
@@ -239,7 +255,6 @@
 			files = (
 				F60B7D5A2A146AD3004378A9 /* LaunchScreen.storyboard in Resources */,
 				F60B7D572A146AD3004378A9 /* Assets.xcassets in Resources */,
-				F60B7D552A146AD0004378A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,14 +318,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F60B7D532A146AD0004378A9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F60B7D542A146AD0004378A9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F60B7D582A146AD3004378A9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -448,7 +455,7 @@
 				INFOPLIST_FILE = JCommerce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,7 +483,7 @@
 				INFOPLIST_FILE = JCommerce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -608,6 +615,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F63101022A17341800CAB1BC /* Presentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Presentation;
+		};
+		F63101042A17341D00CAB1BC /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		F63101062A17341D00CAB1BC /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F60B7D422A146AD0004378A9 /* Project object */;
 }
