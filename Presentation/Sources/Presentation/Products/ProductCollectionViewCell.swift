@@ -12,7 +12,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
     let productImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        imageView.layer.borderWidth = 1
         return imageView
     }()
     
@@ -70,10 +73,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
     func bind(product: Product) {
         nameLabel.text = product.name.capitalized
         priceLabel.text = product.regularPrice
-        productImageView.image = UIImage(named: "placeholder")
+        productImageView.setPlaceholder(image: UIImage(named: "placeholder"))
         if let url = URL(string: product.image) {
             imageLoader.loadImage(with: url) { [weak self] image in
-                self?.productImageView.image = image
+                self?.productImageView.setImage(image: image)
             }
         }
     }
@@ -103,7 +106,7 @@ extension ProductCollectionViewCell {
         addSubview(productImageView)
         
         let constraints: [NSLayoutConstraint] = [
-            productImageView.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+            productImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             productImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             productImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             productImageView.heightAnchor.constraint(equalToConstant: 90)
