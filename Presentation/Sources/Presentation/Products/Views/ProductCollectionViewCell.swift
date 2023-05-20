@@ -23,7 +23,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "shopping-bag")
+        imageView.image = UIImage.shoppingBagIcon
         imageView.tintColor = UIColor(hex: "B4B3B2")
         return imageView
     }()
@@ -89,7 +89,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     func bind(product: Product) {
         
-        productImageView.setPlaceholder(image: UIImage(named: "placeholder"))
+        productImageView.setPlaceholder(image: UIImage.placeholderImage)
         if let url = URL(string: product.image) {
             imageLoader.loadImage(with: url) { [weak self] image in
                 self?.productImageView.setImage(image: image)

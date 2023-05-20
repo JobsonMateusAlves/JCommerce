@@ -7,7 +7,9 @@
 
 import UIKit
 
-public protocol Products {}
+public protocol Products {
+    func startShoppingCartFlow()
+}
 
 public class ProductsViewController: UIViewController {
     
@@ -46,6 +48,13 @@ public class ProductsViewController: UIViewController {
         title = "JCommerce"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage.shoppingCartIcon,
+            style: .plain,
+            target: self,
+            action: #selector(openShoppingCart)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
     func loadData() {
@@ -60,6 +69,10 @@ public class ProductsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "ProductCollectionViewCell")
         collectionView.register(ProductsHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ProductsHeaderCollectionReusableView")
+    }
+    
+    @objc func openShoppingCart() {
+        coordinator.startShoppingCartFlow()
     }
 }
 

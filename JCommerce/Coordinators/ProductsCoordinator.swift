@@ -23,4 +23,8 @@ class ProductsCoordinator: Coordinator, Products {
             self?.navigationController.setViewControllers([controller], animated: true)
         }
     }
+    
+    func startShoppingCartFlow() {
+        
+    }
 }
