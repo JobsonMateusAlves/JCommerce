@@ -61,11 +61,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let promotionLabel: UILabel = {
-        let label: UILabel = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
+    let promotionView: CapsuleView = {
+        let view: CapsuleView = CapsuleView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.backgroundColor = UIColor(hex: "CBAA83")
+        return view
     }()
     
     let imageLoader: ImageLoader = ImageLoader()
@@ -97,16 +98,16 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         nameLabel.text = product.name.capitalized
         actualPriceLabel.text = product.actualPrice
+        
         if product.onSale {
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: product.regularPrice)
-            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(
-                location: 0,
-                length: attributeString.length
-            )
-            )
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(location: 0, length: attributeString.length))
+            promotionView.text = "-\(product.discountPercentage)"
             regularPriceLabel.attributedText = attributeString
+            promotionView.isHidden = false
             regularPriceLabel.isHidden = false
         } else {
+            promotionView.isHidden = true
             regularPriceLabel.isHidden = true
         }
     }
@@ -120,7 +121,7 @@ extension ProductCollectionViewCell {
         setupNameLabelLayout()
         setupBasketImageViewLayout()
         setupPriceStackViewLayout()
-        setupPromotionLabelLayout()
+        setupPromotionViewLayout()
     }
     
     func setupCellLayout() {
@@ -187,13 +188,17 @@ extension ProductCollectionViewCell {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func setupPromotionLabelLayout() {
-        addSubview(promotionLabel)
+    func setupPromotionViewLayout() {
+        addSubview(promotionView)
         
         let constraints: [NSLayoutConstraint] = [
-            
+            promotionView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            promotionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            promotionView.heightAnchor.constraint(equalToConstant: 20)
         ]
         
         NSLayoutConstraint.activate(constraints)
+        
+        promotionView.setupLayout()
     }
 }

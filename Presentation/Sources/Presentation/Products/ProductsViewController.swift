@@ -83,7 +83,7 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: (view.frame.width/2) - 24, height: 200)
+        CGSize(width: (view.frame.width/2) - 24, height: 208)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
