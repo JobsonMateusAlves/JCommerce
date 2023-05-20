@@ -38,7 +38,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         return label
     }()
     
@@ -93,8 +93,8 @@ extension ProductCollectionViewCell {
     func setupCellLayout() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.3
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 8
         layer.cornerRadius = 8
         backgroundColor = .white
     }
