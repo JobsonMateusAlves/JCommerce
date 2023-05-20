@@ -37,11 +37,27 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let priceLabel: UILabel = {
+    let priceStackView: UIStackView = {
+        let stackView: UIStackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    let regularPriceLabel: UILabel = {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 13, weight: .medium)
+        return label
+    }()
+    
+    let actualPriceLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
     
@@ -71,13 +87,27 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func bind(product: Product) {
-        nameLabel.text = product.name.capitalized
-        priceLabel.text = product.regularPrice
+        
         productImageView.setPlaceholder(image: UIImage(named: "placeholder"))
         if let url = URL(string: product.image) {
             imageLoader.loadImage(with: url) { [weak self] image in
                 self?.productImageView.setImage(image: image)
             }
+        }
+        
+        nameLabel.text = product.name.capitalized
+        actualPriceLabel.text = product.actualPrice
+        if product.onSale {
+            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: product.regularPrice)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(
+                location: 0,
+                length: attributeString.length
+            )
+            )
+            regularPriceLabel.attributedText = attributeString
+            regularPriceLabel.isHidden = false
+        } else {
+            regularPriceLabel.isHidden = true
         }
     }
 }
@@ -89,7 +119,7 @@ extension ProductCollectionViewCell {
         setupProductImageViewLayout()
         setupNameLabelLayout()
         setupBasketImageViewLayout()
-        setupPriceLabelLayout()
+        setupPriceStackViewLayout()
         setupPromotionLabelLayout()
     }
     
@@ -135,19 +165,23 @@ extension ProductCollectionViewCell {
             basketImageView.heightAnchor.constraint(equalToConstant: 24),
             basketImageView.widthAnchor.constraint(equalToConstant: 24),
             basketImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            basketImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ]
         
         NSLayoutConstraint.activate(constraints)
     }
     
-    func setupPriceLabelLayout() {
-        addSubview(priceLabel)
+    func setupPriceStackViewLayout() {
+        addSubview(priceStackView)
+        
+        priceStackView.addArrangedSubview(regularPriceLabel)
+        priceStackView.addArrangedSubview(actualPriceLabel)
         
         let constraints: [NSLayoutConstraint] = [
-            priceLabel.centerYAnchor.constraint(equalTo: basketImageView.centerYAnchor),
-            priceLabel.trailingAnchor.constraint(greaterThanOrEqualTo: basketImageView.leadingAnchor, constant: 8),
-            priceLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor)
+            priceStackView.topAnchor.constraint(greaterThanOrEqualTo: nameLabel.bottomAnchor, constant: 8),
+            priceStackView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            priceStackView.trailingAnchor.constraint(lessThanOrEqualTo: basketImageView.leadingAnchor, constant: -8),
+            priceStackView.centerYAnchor.constraint(equalTo: basketImageView.centerYAnchor),
+            priceStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
         ]
         
         NSLayoutConstraint.activate(constraints)
