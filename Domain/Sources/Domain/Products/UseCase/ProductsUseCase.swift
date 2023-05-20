@@ -15,13 +15,13 @@ public protocol ProductsUseCase {
 // MARK: Implementation
 public final class ProductsUseCaseImpl: ProductsUseCase {
 
-    private let productsRepository: ProductsRepository
+    private let repository: ProductsRepository
     
-    public init(productsRepository: ProductsRepository) {
-        self.productsRepository = productsRepository
+    public init(repository: ProductsRepository) {
+        self.repository = repository
     }
     
     public func fetchProducts(completion: @escaping (Result<[Product], Error>) -> Void) {
-        productsRepository.fetchProducts(completion: completion)
+        repository.fetchProducts(completion: completion)
     }
 }

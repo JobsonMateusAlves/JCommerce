@@ -18,13 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationController = UINavigationController(
             rootViewController: ProductsViewController(
-                viewModel: ProductsViewModelImpl(
-                    useCase: ProductsUseCaseImpl(
-                        productsRepository: ProductsRepositoryImpl(
-                            service: ProductsServiceImpl()
-                        )
-                    )
-                )
+                viewModel: ProductsFactory.createViewModel()
             )
         )
         let window = UIWindow(windowScene: windowScene)
