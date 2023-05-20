@@ -7,6 +7,8 @@
 
 import UIKit
 import Presentation
+import Domain
+import Data
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -14,8 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
-        let navigationController = UINavigationController(rootViewController: ProductsViewController())
-        
+        let navigationController = UINavigationController(
+            rootViewController: ProductsViewController(
+                viewModel: ProductsViewModelImpl(
+                    useCase: ProductsUseCaseImpl(
+                        productsRepository: ProductsRepositoryImpl(
+                            service: ProductsServiceImpl()
+                        )
+                    )
+                )
+            )
+        )
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navigationController
         self.window = window
