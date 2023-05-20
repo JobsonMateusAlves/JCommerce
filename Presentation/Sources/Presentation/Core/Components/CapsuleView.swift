@@ -9,22 +9,63 @@ import UIKit
 
 class CapsuleView: UIView {
 
-    let numberOfProductsLabel: UILabel = {
-        let label: UILabel = UILabel()
+    private let textLabel: UILabel = {
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .black
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
+    
+    var text: String = "" {
+        didSet {
+            textLabel.text = text
+        }
+    }
+    
+    var font: UIFont = .systemFont(ofSize: 12, weight: .medium) {
+        didSet {
+            textLabel.font = font
+        }
+    }
+    
+    var textColor: UIColor = .white {
+        didSet {
+            textLabel.textColor = textColor
+        }
+    }
     
     // MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayout()
+    }
+}
+
+extension CapsuleView {
+    func setupLayout() {
+        setupTextLabelLayout()
+        
+        layoutIfNeeded()
+        layer.cornerRadius = frame.height / 2
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
+    }
+    
+    func setupTextLabelLayout() {
+        addSubview(textLabel)
+        
+        let constraints: [NSLayoutConstraint]  = [
+            textLabel.topAnchor.constraint(equalTo: topAnchor),
+            textLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
     }
 }
