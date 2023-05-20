@@ -9,6 +9,8 @@ import Foundation
 
 public class Provider {
     
+    public init() {}
+    
     func request<V: Codable>(
         target: API,
         responseType: V.Type,

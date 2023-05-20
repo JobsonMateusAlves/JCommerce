@@ -11,7 +11,7 @@ import Domain
 public final class ProductsRepositoryImpl: Domain.ProductsRepository {
     let service: ProductsService
     
-    init(service: ProductsService) {
+    public init(service: ProductsService) {
         self.service = service
     }
     
