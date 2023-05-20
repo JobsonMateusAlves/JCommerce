@@ -13,7 +13,7 @@ class ProductsHeaderCollectionReusableView: UICollectionReusableView {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .black
+        label.textColor = .primaryText
         return label
     }()
     
@@ -37,7 +37,7 @@ class ProductsHeaderCollectionReusableView: UICollectionReusableView {
 extension ProductsHeaderCollectionReusableView {
     func setupLayout() {
         setupNumberOfProductsLabelLayout()
-        backgroundColor = UIColor(hex: "F4F4F4")
+        backgroundColor = .primaryBackgroundColor
     }
     
     func setupNumberOfProductsLabelLayout() {

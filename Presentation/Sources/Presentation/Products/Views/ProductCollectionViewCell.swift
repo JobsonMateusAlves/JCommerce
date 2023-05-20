@@ -14,7 +14,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
-        imageView.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        imageView.layer.borderColor = UIColor.border.cgColor
         imageView.layer.borderWidth = 1
         return imageView
     }()
@@ -24,14 +24,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage.shoppingBagIcon
-        imageView.tintColor = UIColor(hex: "B4B3B2")
+        imageView.tintColor = .secondaryTintColor
         return imageView
     }()
     
     let nameLabel: UILabel = {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .primaryText
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .bold)
         return label
@@ -47,7 +47,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     let regularPriceLabel: UILabel = {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .primaryText
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 13, weight: .medium)
         return label
@@ -56,17 +56,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
     let actualPriceLabel: UILabel = {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .primaryText
         label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
     
-    let promotionView: CapsuleView = {
-        let view: CapsuleView = CapsuleView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.backgroundColor = UIColor(hex: "CBAA83")
-        return view
+    let saleCapsuleView: CapsuleView = {
+        let capsuleView: CapsuleView = CapsuleView(frame: .zero)
+        capsuleView.translatesAutoresizingMaskIntoConstraints = false
+        capsuleView.textColor = .primaryText
+        capsuleView.backgroundColor = .saleCapsuleBackgroundColor
+        return capsuleView
     }()
     
     let imageLoader: ImageLoader = ImageLoader()
@@ -102,12 +102,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
         if product.onSale {
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: product.regularPrice)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(location: 0, length: attributeString.length))
-            promotionView.text = "-\(product.discountPercentage)"
+            saleCapsuleView.text = "-\(product.discountPercentage)"
             regularPriceLabel.attributedText = attributeString
-            promotionView.isHidden = false
+            saleCapsuleView.isHidden = false
             regularPriceLabel.isHidden = false
         } else {
-            promotionView.isHidden = true
+            saleCapsuleView.isHidden = true
             regularPriceLabel.isHidden = true
         }
     }
@@ -125,12 +125,12 @@ extension ProductCollectionViewCell {
     }
     
     func setupCellLayout() {
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.shadow.cgColor
         layer.shadowOpacity = 0.3
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 8
         layer.cornerRadius = 8
-        backgroundColor = .white
+        backgroundColor = .secondaryBackgroundColor
     }
     
     func setupProductImageViewLayout() {
@@ -189,16 +189,16 @@ extension ProductCollectionViewCell {
     }
     
     func setupPromotionViewLayout() {
-        addSubview(promotionView)
+        addSubview(saleCapsuleView)
         
         let constraints: [NSLayoutConstraint] = [
-            promotionView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            promotionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            promotionView.heightAnchor.constraint(equalToConstant: 20)
+            saleCapsuleView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            saleCapsuleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            saleCapsuleView.heightAnchor.constraint(equalToConstant: 20)
         ]
         
         NSLayoutConstraint.activate(constraints)
         
-        promotionView.setupLayout()
+        saleCapsuleView.setupLayout()
     }
 }

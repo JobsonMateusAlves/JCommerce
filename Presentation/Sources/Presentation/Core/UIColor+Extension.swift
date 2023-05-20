@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    public convenience init(hex: String) {
+    convenience init(hex: String) {
         let hex: String = hex.trimmingCharacters(in: .alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
@@ -32,3 +32,28 @@ extension UIColor {
         )
     }
 }
+
+// MARK: - Background
+extension UIColor {
+    static let primaryBackgroundColor: UIColor = UIColor(hex: "F4F4F4")
+    static let secondaryBackgroundColor: UIColor = UIColor.white
+    static let saleCapsuleBackgroundColor: UIColor = UIColor(hex: "CBAA83")
+}
+
+// MARK: - Text
+extension UIColor {
+    static let primaryText: UIColor = UIColor.black
+}
+
+// MARK: - TintColor
+extension UIColor {
+    static let primaryTintColor: UIColor = UIColor.black
+    static let secondaryTintColor: UIColor = UIColor(hex: "B4B3B2")
+}
+
+// MARK: - Other
+extension UIColor {
+    static let border: UIColor = UIColor.black.withAlphaComponent(0.1)
+    static let shadow: UIColor = UIColor.black
+}
+

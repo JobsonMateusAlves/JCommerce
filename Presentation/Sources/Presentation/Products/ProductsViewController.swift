@@ -21,7 +21,7 @@ public class ProductsViewController: UIViewController {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.alwaysBounceVertical = true
-        collectionView.backgroundColor = UIColor(hex: "F4F4F4")
+        collectionView.backgroundColor = .primaryBackgroundColor
         return collectionView
     }()
     
@@ -54,7 +54,7 @@ public class ProductsViewController: UIViewController {
             target: self,
             action: #selector(openShoppingCart)
         )
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTintColor
     }
     
     func loadData() {
@@ -130,8 +130,8 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: Layout
 extension ProductsViewController {
     func setupLayout() {
-        view.backgroundColor = UIColor(hex: "F4F4F4")
         setupCollectionViewLayout()
+        view.backgroundColor = .primaryBackgroundColor
     }
     
     func setupCollectionViewLayout() {

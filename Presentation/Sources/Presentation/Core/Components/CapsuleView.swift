@@ -13,7 +13,7 @@ class CapsuleView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .primaryText
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
@@ -30,7 +30,7 @@ class CapsuleView: UIView {
         }
     }
     
-    var textColor: UIColor = .white {
+    var textColor: UIColor = .primaryText {
         didSet {
             textLabel.textColor = textColor
         }
@@ -53,7 +53,7 @@ extension CapsuleView {
         layoutIfNeeded()
         layer.cornerRadius = frame.height / 2
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        layer.borderColor = UIColor.border.cgColor
     }
     
     func setupTextLabelLayout() {
