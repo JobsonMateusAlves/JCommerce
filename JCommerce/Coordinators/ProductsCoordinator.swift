@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Domain
 import Presentation
 
 class ProductsCoordinator: Coordinator, Products {
@@ -26,5 +27,12 @@ class ProductsCoordinator: Coordinator, Products {
     
     func startShoppingCartFlow() {
         
+    }
+    
+    func startProductDetailFlow(product: Product) {
+        let coordinator = ProductDetailCoordinator(navigationController: navigationController)
+        coordinator.product = product
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }

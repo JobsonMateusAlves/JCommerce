@@ -16,4 +16,5 @@ extension UIImage {
 extension UIImage {
     static let shoppingCartIcon: UIImage? = UIImage(named: "shopping-cart")
     static let shoppingBagIcon: UIImage? = UIImage(named: "shopping-bag")
+    static let shareIcon: UIImage? = UIImage(systemName: "square.and.arrow.up")
 }

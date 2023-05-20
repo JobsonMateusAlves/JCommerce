@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Domain
 
 public protocol Products {
     func startShoppingCartFlow()
+    func startProductDetailFlow(product: Product)
 }
 
 public class ProductsViewController: UIViewController {
@@ -39,6 +41,12 @@ public class ProductsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -46,8 +54,6 @@ public class ProductsViewController: UIViewController {
         loadData()
         
         title = "JCommerce"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage.shoppingCartIcon,
             style: .plain,
@@ -55,6 +61,7 @@ public class ProductsViewController: UIViewController {
             action: #selector(openShoppingCart)
         )
         navigationItem.rightBarButtonItem?.tintColor = .primaryTintColor
+        navigationItem.backButtonTitle = ""
     }
     
     func loadData() {
@@ -90,6 +97,10 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
         cell.bind(product: viewModel.productAt(index: indexPath.item))
         
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator.startProductDetailFlow(product: viewModel.productAt(index: indexPath.item))
     }
 }
 
@@ -147,4 +158,3 @@ extension ProductsViewController {
         NSLayoutConstraint.activate(constraints)
     }
 }
-

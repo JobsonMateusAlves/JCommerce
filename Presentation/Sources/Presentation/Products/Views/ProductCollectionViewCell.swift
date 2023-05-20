@@ -69,7 +69,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return capsuleView
     }()
     
-    let imageLoader: ImageLoader = ImageLoader()
+    private let imageLoader: ImageLoader = ImageLoader()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -85,6 +85,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
         setupLayout()
         isUserInteractionEnabled = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageLoader.cancel()
     }
     
     func bind(product: Product) {

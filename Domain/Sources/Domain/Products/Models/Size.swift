@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Size {
-    var available: Bool
-    var size: String
-    var sku: String
+    public var available: Bool
+    public var size: String
+    public var sku: String
     
     public init(available: Bool, size: String, sku: String) {
         self.available = available

@@ -43,6 +43,7 @@ extension UIColor {
 // MARK: - Text
 extension UIColor {
     static let primaryText: UIColor = UIColor.black
+    static let secondaryText: UIColor = UIColor(hex: "343434")
 }
 
 // MARK: - TintColor
