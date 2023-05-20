@@ -19,6 +19,8 @@
 		F63101052A17341D00CAB1BC /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = F63101042A17341D00CAB1BC /* Data */; };
 		F63101072A17341D00CAB1BC /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = F63101062A17341D00CAB1BC /* Domain */; };
 		F6DE6EF02A192436007F6D8D /* ProductsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EEF2A192436007F6D8D /* ProductsFactory.swift */; };
+		F6DE6EF32A192549007F6D8D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EF22A192549007F6D8D /* MainCoordinator.swift */; };
+		F6DE6EF52A192593007F6D8D /* ProductsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EF42A192593007F6D8D /* ProductsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		F60B7D832A146BAD004378A9 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 		F646D0512A146BD7009617DF /* Presentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Presentation; sourceTree = "<group>"; };
 		F6DE6EEF2A192436007F6D8D /* ProductsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFactory.swift; sourceTree = "<group>"; };
+		F6DE6EF22A192549007F6D8D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F6DE6EF42A192593007F6D8D /* ProductsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		F60B7D4C2A146AD0004378A9 /* JCommerce */ = {
 			isa = PBXGroup;
 			children = (
+				F6DE6EF12A192500007F6D8D /* Coordinators */,
 				F6DE6EEE2A1923EC007F6D8D /* Factories */,
 				F60B7D4D2A146AD0004378A9 /* AppDelegate.swift */,
 				F60B7D4F2A146AD0004378A9 /* SceneDelegate.swift */,
@@ -153,6 +158,15 @@
 				F6DE6EEF2A192436007F6D8D /* ProductsFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		F6DE6EF12A192500007F6D8D /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				F6DE6EF22A192549007F6D8D /* MainCoordinator.swift */,
+				F6DE6EF42A192593007F6D8D /* ProductsCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +306,9 @@
 			files = (
 				F6DE6EF02A192436007F6D8D /* ProductsFactory.swift in Sources */,
 				F60B7D522A146AD0004378A9 /* ViewController.swift in Sources */,
+				F6DE6EF52A192593007F6D8D /* ProductsCoordinator.swift in Sources */,
 				F60B7D4E2A146AD0004378A9 /* AppDelegate.swift in Sources */,
+				F6DE6EF32A192549007F6D8D /* MainCoordinator.swift in Sources */,
 				F60B7D502A146AD0004378A9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

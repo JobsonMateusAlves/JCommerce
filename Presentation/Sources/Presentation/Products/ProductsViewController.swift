@@ -7,6 +7,8 @@
 
 import UIKit
 
+public protocol Products {}
+
 public class ProductsViewController: UIViewController {
     
     // MARK: Properties
@@ -22,10 +24,12 @@ public class ProductsViewController: UIViewController {
     }()
     
     private let viewModel: ProductsViewModel
+    private let coordinator: (Coordinator & Products)
     
     // MARK: Inits
-    public init(viewModel: ProductsViewModel) {
+    public init(viewModel: ProductsViewModel, coordinator: (Coordinator & Products)) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
