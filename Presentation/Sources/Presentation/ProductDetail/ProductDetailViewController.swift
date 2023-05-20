@@ -58,6 +58,12 @@ public class ProductDetailViewController: UIViewController {
         return label
     }()
     
+    let sizeSelectorView: SelectorView = {
+        let selectorView: SelectorView = SelectorView()
+        selectorView.translatesAutoresizingMaskIntoConstraints = false
+        return selectorView
+    }()
+    
     private let imageLoader: ImageLoader = ImageLoader()
     private let viewModel: ProductDetailViewModel
     private let coordinator: (Coordinator & ProductDetail)
@@ -74,8 +80,17 @@ public class ProductDetailViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
+        setupSelectorView()
         setupLayout()
-        setupData()
+        loadData()
+        
+        viewModel.onChange { [weak self] in
+            self?.loadData()
+        }
+    }
+    
+    func setupNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = false
         UIView.animate(withDuration: 0.3) {
             self.navigationController?.navigationBar.layoutIfNeeded()
@@ -89,7 +104,11 @@ public class ProductDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .primaryTintColor
     }
     
-    func setupData() {
+    func setupSelectorView() {
+        sizeSelectorView.delegate = self
+    }
+    
+    func loadData() {
         productImageView.setPlaceholder(image: UIImage.placeholderImage)
         if let url = URL(string: viewModel.product.image) {
             imageLoader.loadImage(with: url) { [weak self] image in
@@ -98,11 +117,12 @@ public class ProductDetailViewController: UIViewController {
         }
         
         nameLabel.text = viewModel.product.name.capitalized
-        setupColorLabel()
-        setupSizeLabel()
+        setColorLabel()
+        setSizeLabel()
+        sizeSelectorView.bind(items: viewModel.availableSizes.map({ SelectorItem(title: $0.size, selected: viewModel.selectedSize?.size == $0.size) }))
     }
     
-    func setupColorLabel() {
+    func setColorLabel() {
         let attributedText = NSMutableAttributedString(string: "Cor: ")
         let fontAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -111,7 +131,7 @@ public class ProductDetailViewController: UIViewController {
         colorLabel.attributedText = attributedText
     }
     
-    func setupSizeLabel() {
+    func setSizeLabel() {
         let attributedText = NSMutableAttributedString(string: "Tamanho: ")
         let fontAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -129,6 +149,12 @@ public class ProductDetailViewController: UIViewController {
     }
 }
 
+extension ProductDetailViewController: SelectorViewDelegate {
+    func onSelect(item: SelectorItem) {
+        viewModel.select(by: item.title)
+    }
+}
+
 // MARK: Layout
 extension ProductDetailViewController {
     func setupLayout() {
@@ -137,6 +163,7 @@ extension ProductDetailViewController {
         setupCollectionViewLayout()
         setupColorLabelLayout()
         setupSizeLabelLayout()
+        setupSizeSelectorViewLayout()
         view.backgroundColor = .secondaryBackgroundColor
     }
     
@@ -196,6 +223,19 @@ extension ProductDetailViewController {
             sizeLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 8),
             sizeLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             sizeLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupSizeSelectorViewLayout() {
+        view.addSubview(sizeSelectorView)
+        
+        let constraints: [NSLayoutConstraint] = [
+            sizeSelectorView.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 8),
+            sizeSelectorView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            sizeSelectorView.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            sizeSelectorView.heightAnchor.constraint(equalToConstant: 44)
         ]
         
         NSLayoutConstraint.activate(constraints)
