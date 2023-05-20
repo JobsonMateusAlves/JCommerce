@@ -8,18 +8,18 @@
 import Foundation
 
 public struct Product {
-    var name: String
-    var style: String
-    var codeColor: String
-    var colorSlug: String
-    var color: String
-    var onSale: Bool
-    var regularPrice: String
-    var actualPrice: String
-    var discountPercentage: String
-    var installments: String
-    var image: String
-    var sizes: [Size]
+    public var name: String
+    public var style: String
+    public var codeColor: String
+    public var colorSlug: String
+    public var color: String
+    public var onSale: Bool
+    public var regularPrice: String
+    public var actualPrice: String
+    public var discountPercentage: String
+    public var installments: String
+    public var image: String
+    public var sizes: [Size]
     
     public init(name: String, style: String, codeColor: String, colorSlug: String, color: String, onSale: Bool, regularPrice: String, actualPrice: String, discountPercentage: String, installments: String, image: String, sizes: [Size]) {
         self.name = name
