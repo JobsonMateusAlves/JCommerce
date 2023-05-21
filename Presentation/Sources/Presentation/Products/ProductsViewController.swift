@@ -55,7 +55,6 @@ public class ProductsViewController: UIViewController {
         
         title = "JCommerce"
         setupNavigation()
-        
     }
     
     func loadData() {
