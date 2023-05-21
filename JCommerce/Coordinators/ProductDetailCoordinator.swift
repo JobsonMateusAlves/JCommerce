@@ -28,4 +28,9 @@ class ProductDetailCoordinator: Coordinator, ProductDetail {
             navigationController.pushViewController(controller, animated: true)
         }
     }
+    
+    func finishProductDetailFlow() {
+        navigationController.popViewController(animated: true)
+        finish?()
+    }
 }

@@ -32,6 +32,10 @@ class ProductsCoordinator: Coordinator, Products {
     func startProductDetailFlow(product: Product) {
         let coordinator = ProductDetailCoordinator(navigationController: navigationController)
         coordinator.product = product
+        coordinator.finish = { [weak self] in
+            self?.childCoordinators.removeLast()
+            self?.startShoppingCartFlow()
+        }
         childCoordinators.append(coordinator)
         coordinator.start()
     }
