@@ -10,6 +10,7 @@ import Domain
 
 public protocol ProductDetail {
     var product: Product? { get set }
+    func finishProductDetailFlow()
 }
 
 public class ProductDetailViewController: UIViewController {
@@ -149,9 +150,8 @@ public class ProductDetailViewController: UIViewController {
     }
     
     func setupButtons() {
-        buyNowButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        addToShoppingCartButton.addTarget(self, action: #selector(addToShoppingCart), for: .touchUpInside)
         buyNowButton.backgroundColor = UIColor.primaryColor
-        addToShoppingCartButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         addToShoppingCartButton.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.2)
     }
     
@@ -196,6 +196,16 @@ public class ProductDetailViewController: UIViewController {
     
     @objc func share() {
         
+    }
+    
+    @objc func addToShoppingCart() {
+        viewModel.addToShoppingCart { [weak self] in
+            if let _ = self?.viewModel.addToShoppingCartError {
+                return
+            }
+            
+            self?.coordinator.finishProductDetailFlow()
+        }
     }
 }
 

@@ -12,17 +12,24 @@ public protocol ProductDetailViewModel {
     var product: Product { get set }
     var selectedSize: Size? { get set }
     var availableSizes: [Size] { get }
+    var addToShoppingCartError: String? { get set  }
     func select(by title: String)
+    func addToShoppingCart(completion: @escaping () -> Void)
     func onChange(_ completion: @escaping () -> Void)
+    
 }
 
 public class ProductDetailViewModelImpl: ProductDetailViewModel {
     public var product: Product
     public var selectedSize: Size?
+    public var addToShoppingCartError: String?
+    
+    private let purchaseUseCases: PurchasesUseCases
     private var completion: (() -> Void)?
 
-    public init(product: Product) {
+    public init(product: Product, purchaseUseCases: PurchasesUseCases) {
         self.product = product
+        self.purchaseUseCases = purchaseUseCases
         self.selectedSize = product.sizes.count == 1 ? product.sizes.first : nil
     }
     
@@ -33,6 +40,24 @@ public class ProductDetailViewModelImpl: ProductDetailViewModel {
     public func select(by title: String) {
         selectedSize = product.sizes.first(where: { $0.size == title })
         completion?()
+    }
+    
+    public func addToShoppingCart(completion: @escaping () -> Void) {
+        let productItem = ProductItem(
+            id: UUID().uuidString,
+            product: product,
+            size: selectedSize,
+            amount: 1
+        )
+        purchaseUseCases.addProductItem(productItem) { [weak self] result in
+            switch result {
+            case .success:
+                completion()
+            case .failure(let error):
+                self?.addToShoppingCartError = error.localizedDescription
+                completion()
+            }
+        }
     }
 }
 
