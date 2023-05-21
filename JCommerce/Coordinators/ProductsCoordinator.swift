@@ -26,7 +26,9 @@ class ProductsCoordinator: Coordinator, Products {
     }
     
     func startShoppingCartFlow() {
-        
+        let coordinator = ShoppingCartCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
     
     func startProductDetailFlow(product: Product) {

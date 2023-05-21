@@ -10,6 +10,7 @@ import Foundation
 // MARK: protocol
 public protocol PurchasesUseCases {
     func addProductItem(_ productItem: ProductItem, completion: @escaping (Result<Purchase, Error>) -> Void)
+    func fetchProductItemsInCurrentPurchase(completion: @escaping (Result<[ProductItem], Error>) -> Void)
 }
 
 // MARK: Implementation
@@ -42,6 +43,19 @@ public class PurchasesUseCasesImpl: PurchasesUseCases {
                     }
                 }
             )
+        }
+    }
+    
+    public func fetchProductItemsInCurrentPurchase(completion: @escaping (Result<[ProductItem], Error>) -> Void) {
+        let pending: Bool = true
+        repository.fetchPurchase(by: pending) { purchase in
+            let currentPurchase: Purchase = purchase ?? Purchase(
+                id: UUID().uuidString,
+                items: [],
+                pending: true
+            )
+            
+            completion(.success(currentPurchase.items))
         }
     }
 }
