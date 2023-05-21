@@ -24,7 +24,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage.shoppingBagIcon
-        imageView.tintColor = .secondaryTintColor
+        imageView.tintColor = .primaryColor
         return imageView
     }()
     
@@ -64,8 +64,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     let saleCapsuleView: CapsuleView = {
         let capsuleView: CapsuleView = CapsuleView(frame: .zero)
         capsuleView.translatesAutoresizingMaskIntoConstraints = false
-        capsuleView.textColor = .primaryText
-        capsuleView.backgroundColor = .saleCapsuleBackgroundColor
+        capsuleView.textColor = .terciaryText
+        capsuleView.backgroundColor = .primaryColor
+        capsuleView.font = .systemFont(ofSize: 12, weight: .bold)
         return capsuleView
     }()
     

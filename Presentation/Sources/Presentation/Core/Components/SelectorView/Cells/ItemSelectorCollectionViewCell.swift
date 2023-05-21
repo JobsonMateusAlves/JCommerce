@@ -32,7 +32,7 @@ class ItemSelectorCollectionViewCell: UICollectionViewCell {
     
     func bind(item: SelectorItem) {
         titleLabel.text = item.title
-        layer.borderColor = item.selected ? UIColor.saleCapsuleBackgroundColor.cgColor : UIColor.border.cgColor
+        layer.borderColor = item.selected ? UIColor.primaryColor.cgColor : UIColor.border.cgColor
     }
 }
 

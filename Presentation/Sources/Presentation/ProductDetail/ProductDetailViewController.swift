@@ -64,6 +64,26 @@ public class ProductDetailViewController: UIViewController {
         return selectorView
     }()
     
+    let buyNowButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Comprar agora", for: .normal)
+        button.setTitleColor(UIColor.terciaryText, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
+    let addToShoppingCartButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Adicionar ao carrinho", for: .normal)
+        button.setTitleColor(UIColor.primaryColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
     private let imageLoader: ImageLoader = ImageLoader()
     private let viewModel: ProductDetailViewModel
     private let coordinator: (Coordinator & ProductDetail)
@@ -82,6 +102,7 @@ public class ProductDetailViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupSelectorView()
+        setupButtons()
         setupLayout()
         loadData()
         
@@ -90,6 +111,7 @@ public class ProductDetailViewController: UIViewController {
         }
     }
     
+    // MARK: Setup
     func setupNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = false
         UIView.animate(withDuration: 0.3) {
@@ -101,13 +123,21 @@ public class ProductDetailViewController: UIViewController {
             target: self,
             action: #selector(share)
         )
-        navigationItem.rightBarButtonItem?.tintColor = .primaryTintColor
+        navigationItem.rightBarButtonItem?.tintColor = .primaryColor
     }
     
     func setupSelectorView() {
         sizeSelectorView.delegate = self
     }
     
+    func setupButtons() {
+        buyNowButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        buyNowButton.backgroundColor = UIColor.primaryColor
+        addToShoppingCartButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        addToShoppingCartButton.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.2)
+    }
+    
+    // MARK: Functions
     func loadData() {
         productImageView.setPlaceholder(image: UIImage.placeholderImage)
         if let url = URL(string: viewModel.product.image) {
@@ -164,6 +194,8 @@ extension ProductDetailViewController {
         setupColorLabelLayout()
         setupSizeLabelLayout()
         setupSizeSelectorViewLayout()
+        setupBuyNowButtonLayout()
+        setupAddToShoppingCartButtonLayout()
         view.backgroundColor = .secondaryBackgroundColor
     }
     
@@ -236,6 +268,32 @@ extension ProductDetailViewController {
             sizeSelectorView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             sizeSelectorView.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             sizeSelectorView.heightAnchor.constraint(equalToConstant: 44)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupBuyNowButtonLayout() {
+        view.addSubview(buyNowButton)
+        
+        let constraints: [NSLayoutConstraint] = [
+            buyNowButton.topAnchor.constraint(equalTo: sizeSelectorView.bottomAnchor, constant: 24),
+            buyNowButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            buyNowButton.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            buyNowButton.heightAnchor.constraint(equalToConstant: 44)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupAddToShoppingCartButtonLayout() {
+        view.addSubview(addToShoppingCartButton)
+        
+        let constraints: [NSLayoutConstraint] = [
+            addToShoppingCartButton.topAnchor.constraint(equalTo: buyNowButton.bottomAnchor, constant: 8),
+            addToShoppingCartButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            addToShoppingCartButton.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            addToShoppingCartButton.heightAnchor.constraint(equalToConstant: 44)
         ]
         
         NSLayoutConstraint.activate(constraints)

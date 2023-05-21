@@ -54,14 +54,8 @@ public class ProductsViewController: UIViewController {
         loadData()
         
         title = "JCommerce"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage.shoppingCartIcon,
-            style: .plain,
-            target: self,
-            action: #selector(openShoppingCart)
-        )
-        navigationItem.rightBarButtonItem?.tintColor = .primaryTintColor
-        navigationItem.backButtonTitle = ""
+        setupNavigation()
+        
     }
     
     func loadData() {
@@ -71,6 +65,19 @@ public class ProductsViewController: UIViewController {
     }
 
     // MARK: Setup
+    func setupNavigation() {
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.primaryColor]
+        navigationController?.navigationBar.tintColor = UIColor.primaryColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage.shoppingCartIcon,
+            style: .plain,
+            target: self,
+            action: #selector(openShoppingCart)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = .primaryColor
+        navigationItem.backButtonTitle = ""
+    }
+    
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self

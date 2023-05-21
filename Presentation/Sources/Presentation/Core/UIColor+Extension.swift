@@ -37,23 +37,18 @@ extension UIColor {
 extension UIColor {
     static let primaryBackgroundColor: UIColor = UIColor(hex: "F4F4F4")
     static let secondaryBackgroundColor: UIColor = UIColor.white
-    static let saleCapsuleBackgroundColor: UIColor = UIColor(hex: "CBAA83")
 }
 
 // MARK: - Text
 extension UIColor {
     static let primaryText: UIColor = UIColor.black
     static let secondaryText: UIColor = UIColor(hex: "343434")
-}
-
-// MARK: - TintColor
-extension UIColor {
-    static let primaryTintColor: UIColor = UIColor.black
-    static let secondaryTintColor: UIColor = UIColor(hex: "B4B3B2")
+    static let terciaryText: UIColor = UIColor.white
 }
 
 // MARK: - Other
 extension UIColor {
+    static let primaryColor: UIColor = UIColor(hex: "6618C8")
     static let border: UIColor = UIColor.black.withAlphaComponent(0.1)
     static let shadow: UIColor = UIColor.black
 }
