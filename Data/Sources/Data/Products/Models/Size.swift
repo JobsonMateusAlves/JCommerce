@@ -22,4 +22,12 @@ extension Size {
             sku: sku
         )
     }
+    
+    func toDatabase() -> SizeObject {
+        SizeObject(
+            sku: sku,
+            available: available,
+            size: size
+        )
+    }
 }
