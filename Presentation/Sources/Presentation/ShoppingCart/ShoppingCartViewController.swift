@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Domain
 
 public protocol ShoppingCart {}
 
@@ -13,7 +14,7 @@ public class ShoppingCartViewController: UIViewController {
     
     // MARK: Properties
     private let tableView: UITableView = {
-        let tableView: UITableView = UITableView()
+        let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .primaryBackgroundColor
         tableView.separatorStyle = .none
@@ -73,12 +74,27 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductItemTableViewCell", for: indexPath) as? ProductItemTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.bind(productItem: viewModel.productItemAt(index: indexPath.row))
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         (viewModel.productItemAt(index: indexPath.row).product?.onSale ?? true) ? 160 : 140
+    }
+}
+
+extension ShoppingCartViewController: ProductItemTableViewCellDelegate {
+    func increaseAmount(productItem: Domain.ProductItem) {
+//        viewModel.increaseAmount(productItem: productItem) { [weak self] index in
+//            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+//        }
+    }
+    
+    func decreaseAmount(productItem: Domain.ProductItem) {
+//        viewModel.decreaseAmount(productItem: productItem) { [weak self] index in
+//            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+//        }
     }
 }
 

@@ -13,6 +13,8 @@ public protocol ShoppingCartViewModel {
     var error: String? { get }
     func productItemAt(index: Int) -> ProductItem
     func fetchProductItems(completion: @escaping () -> Void)
+    func increaseAmount(productItem: ProductItem, completion: @escaping (Int) -> Void)
+    func decreaseAmount(productItem: ProductItem, completion: @escaping (Int) -> Void)
 }
 
 public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
@@ -35,6 +37,20 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
                 self?.fetchProductItemsError = error.localizedDescription
                 completion()
             }
+        }
+    }
+    
+    public func increaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
+        guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
+        productItems[index].amount += 1
+        completion(index)
+    }
+    
+    public func decreaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
+        guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
+        if productItems[index].amount > 1 {
+            productItems[index].amount -= 1
+            completion(index)
         }
     }
 }

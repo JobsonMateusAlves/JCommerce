@@ -8,6 +8,11 @@
 import UIKit
 import Domain
 
+protocol ProductItemTableViewCellDelegate: AnyObject {
+    func increaseAmount(productItem: ProductItem)
+    func decreaseAmount(productItem: ProductItem)
+}
+
 class ProductItemTableViewCell: UITableViewCell {
     
     let view: UIView = {
@@ -128,6 +133,8 @@ class ProductItemTableViewCell: UITableViewCell {
     }()
     
     private let imageLoader: ImageLoader = ImageLoader()
+    private var productItem: ProductItem?
+    weak var delegate: ProductItemTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -136,12 +143,14 @@ class ProductItemTableViewCell: UITableViewCell {
     // MARK: Inits
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupButtons()
         setupLayout()
         selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupButtons()
         setupLayout()
     }
     
@@ -151,6 +160,8 @@ class ProductItemTableViewCell: UITableViewCell {
     }
     
     func bind(productItem: ProductItem) {
+        self.productItem = productItem
+        
         productItemImageView.setPlaceholder(image: UIImage.placeholderImage)
         if let imageString = productItem.product?.image, let url = URL(string: imageString) {
             imageLoader.loadImage(with: url) { [weak self] image in
@@ -182,6 +193,23 @@ class ProductItemTableViewCell: UITableViewCell {
         ]
         attributedText.append(NSAttributedString(string: "\(color.capitalized)", attributes: fontAttribute))
         colorLabel.attributedText = attributedText
+    }
+    
+    func setupButtons() {
+        increaseButton.addTarget(self, action: #selector(increaseAmount), for: .touchUpInside)
+        decreaseButton.addTarget(self, action: #selector(decreaseAmount), for: .touchUpInside)
+    }
+    
+    @objc func increaseAmount() {
+        print("Teste increaseAmount")
+        guard let productItem = self.productItem else { return }
+        delegate?.decreaseAmount(productItem: productItem)
+    }
+    
+    @objc func decreaseAmount() {
+        print("Teste decreaseAmount")
+        guard let productItem = self.productItem else { return }
+        delegate?.decreaseAmount(productItem: productItem)
     }
 }
 
