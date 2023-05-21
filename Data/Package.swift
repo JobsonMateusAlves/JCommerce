@@ -16,12 +16,17 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Domain", path: "../Domain"),
+        .package(url: "https://github.com/realm/realm-swift.git", exact: "10.39.1")
     ],
     targets: [
         .target(
             name: "Data",
             dependencies: [
-                "Domain"
+                "Domain",
+                .product(
+                    name: "RealmSwift",
+                    package: "realm-swift"
+                )
             ]
         ),
         .testTarget(
