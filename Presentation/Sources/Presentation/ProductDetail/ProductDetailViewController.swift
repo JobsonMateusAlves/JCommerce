@@ -64,6 +64,24 @@ public class ProductDetailViewController: UIViewController {
         return selectorView
     }()
     
+    let priceLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .primaryText
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        return label
+    }()
+    
+    let installmentsLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .primaryText
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        return label
+    }()
+    
     let buyNowButton: UIButton = {
         let button: UIButton = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -147,9 +165,11 @@ public class ProductDetailViewController: UIViewController {
         }
         
         nameLabel.text = viewModel.product.name.capitalized
+        priceLabel.text = viewModel.product.actualPrice
+        installmentsLabel.text = "ou \(viewModel.product.installments) sem juros"
+        sizeSelectorView.bind(items: viewModel.availableSizes.map({ SelectorItem(title: $0.size, selected: viewModel.selectedSize?.size == $0.size) }))
         setColorLabel()
         setSizeLabel()
-        sizeSelectorView.bind(items: viewModel.availableSizes.map({ SelectorItem(title: $0.size, selected: viewModel.selectedSize?.size == $0.size) }))
     }
     
     func setColorLabel() {
@@ -194,6 +214,8 @@ extension ProductDetailViewController {
         setupColorLabelLayout()
         setupSizeLabelLayout()
         setupSizeSelectorViewLayout()
+        setupPriceLabelLayout()
+        setupInstallmentsLabelLayout()
         setupBuyNowButtonLayout()
         setupAddToShoppingCartButtonLayout()
         view.backgroundColor = .secondaryBackgroundColor
@@ -273,11 +295,35 @@ extension ProductDetailViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    func setupPriceLabelLayout() {
+        view.addSubview(priceLabel)
+        
+        let constraints: [NSLayoutConstraint] = [
+            priceLabel.topAnchor.constraint(equalTo: sizeSelectorView.bottomAnchor, constant: 24),
+            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            priceLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupInstallmentsLabelLayout() {
+        view.addSubview(installmentsLabel)
+        
+        let constraints: [NSLayoutConstraint] = [
+            installmentsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
+            installmentsLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            installmentsLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
     func setupBuyNowButtonLayout() {
         view.addSubview(buyNowButton)
         
         let constraints: [NSLayoutConstraint] = [
-            buyNowButton.topAnchor.constraint(equalTo: sizeSelectorView.bottomAnchor, constant: 24),
+            buyNowButton.topAnchor.constraint(equalTo: installmentsLabel.bottomAnchor, constant: 8),
             buyNowButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             buyNowButton.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             buyNowButton.heightAnchor.constraint(equalToConstant: 44)
