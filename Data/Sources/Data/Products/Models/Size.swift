@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Domain
 
 struct Size: Codable {
     var available: Bool
@@ -15,14 +14,6 @@ struct Size: Codable {
 }
 
 extension Size {
-    func toDomain() -> Domain.Size {
-        Domain.Size(
-            available: available,
-            size: size,
-            sku: sku
-        )
-    }
-    
     func toDatabase() -> SizeObject {
         SizeObject(
             sku: sku,

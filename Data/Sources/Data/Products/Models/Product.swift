@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Domain
 import RealmSwift
 
 struct Product: Codable {
@@ -40,23 +39,6 @@ struct Product: Codable {
 }
 
 extension Product {
-    func toDomain() -> Domain.Product {
-        Domain.Product(
-            name: name,
-            style: style,
-            codeColor: codeColor,
-            colorSlug: colorSlug,
-            color: color,
-            onSale: onSale,
-            regularPrice: regularPrice,
-            actualPrice: actualPrice,
-            discountPercentage: discountPercentage,
-            installments: installments,
-            image: image,
-            sizes: sizes.map({ $0.toDomain() })
-        )
-    }
-    
     func toDatabase() -> ProductObject {
         let sizeList = List<SizeObject>()
         sizeList.append(objectsIn: sizes.map({ $0.toDatabase() }))

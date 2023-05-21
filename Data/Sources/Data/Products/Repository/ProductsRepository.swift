@@ -21,9 +21,13 @@ public final class ProductsRepositoryImpl: Domain.ProductsRepository {
         service.fetchProducts { [weak self] result in
             switch result {
             case .success(let response):
-                try? self?.database.save(products: response.products.map({ $0.toDatabase() }))
-                completion(.success(response.products.map({ $0.toDomain() })))
+                let productObjects = response.products.map({ $0.toDatabase() })
+                try? self?.database.save(products: productObjects)
+                
+                completion(.success(productObjects.map({ $0.toDomain() })))
+                
             case .failure(let error):
+                
                 completion(.failure(error))
             }
         }
