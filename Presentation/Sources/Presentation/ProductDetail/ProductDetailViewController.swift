@@ -88,6 +88,7 @@ public class ProductDetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Comprar agora", for: .normal)
         button.setTitleColor(UIColor.terciaryText, for: .normal)
+        button.backgroundColor = UIColor.primaryColor
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         button.layer.cornerRadius = 8
         return button
@@ -98,6 +99,7 @@ public class ProductDetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Adicionar ao carrinho", for: .normal)
         button.setTitleColor(UIColor.primaryColor, for: .normal)
+        button.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.2)
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         button.layer.cornerRadius = 8
         return button
@@ -151,8 +153,6 @@ public class ProductDetailViewController: UIViewController {
     
     func setupButtons() {
         addToShoppingCartButton.addTarget(self, action: #selector(addToShoppingCart), for: .touchUpInside)
-        buyNowButton.backgroundColor = UIColor.primaryColor
-        addToShoppingCartButton.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.2)
     }
     
     // MARK: Functions

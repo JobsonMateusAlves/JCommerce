@@ -10,6 +10,7 @@ import Domain
 
 public protocol ShoppingCartViewModel {
     var numberOfProductItems: Int { get }
+    var totalProductsPrice: String { get }
     var error: String? { get }
     func productItemAt(index: Int) -> ProductItem
     func fetchProductItems(completion: @escaping () -> Void)
@@ -62,6 +63,19 @@ extension ShoppingCartViewModelImpl {
     
     public var error: String? {
         fetchProductItemsError
+    }
+    
+    public var totalProductsPrice: String {
+        let sum: Double = productItems.reduce(0) { partialResult, productItem in
+            guard let priceString = productItem.product?.actualPrice.components(separatedBy: " ").last,
+                  let price = Double(priceString.replacingOccurrences(of: ",", with: "."))
+            else {
+                return partialResult
+            }
+            
+            return partialResult + (Double(productItem.amount) * price)
+        }
+        return "R$ \(sum)"
     }
 
     public func productItemAt(index: Int) -> ProductItem {

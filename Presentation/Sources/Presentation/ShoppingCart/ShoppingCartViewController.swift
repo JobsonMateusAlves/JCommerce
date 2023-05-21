@@ -14,11 +14,17 @@ public class ShoppingCartViewController: UIViewController {
     
     // MARK: Properties
     private let tableView: UITableView = {
-        let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
+        let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .primaryBackgroundColor
         tableView.separatorStyle = .none
         return tableView
+    }()
+    
+    let totalPurchaseView: TotalPurchaseView = {
+        let view: TotalPurchaseView = TotalPurchaseView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let viewModel: ShoppingCartViewModel
@@ -45,6 +51,7 @@ public class ShoppingCartViewController: UIViewController {
     func loadData() {
         viewModel.fetchProductItems { [weak self] in
             self?.tableView.reloadData()
+            self?.totalPurchaseView.bind(totalProductsPrice: self?.viewModel.totalProductsPrice ?? "0")
         }
     }
     
@@ -103,6 +110,7 @@ extension ShoppingCartViewController {
 
     func setupLayout() {
         setupTableViewLayout()
+        setupTotalPurchaseViewLayout()
     }
 
     func setupTableViewLayout() {
@@ -113,6 +121,19 @@ extension ShoppingCartViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupTotalPurchaseViewLayout() {
+        view.addSubview(totalPurchaseView)
+
+        let constraints: [NSLayoutConstraint] = [
+            totalPurchaseView.heightAnchor.constraint(equalToConstant: 140),
+            totalPurchaseView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            totalPurchaseView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            totalPurchaseView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
 
         NSLayoutConstraint.activate(constraints)
