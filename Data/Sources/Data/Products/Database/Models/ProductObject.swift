@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Domain
 
 public class ProductObject: Object {
     @Persisted(primaryKey: true) var codeColor: String = ""
@@ -36,5 +37,24 @@ public class ProductObject: Object {
         self.installments = installments
         self.image = image
         self.sizes = sizes
+    }
+}
+
+extension ProductObject {
+    func toDomain() -> Domain.Product {
+        Domain.Product(
+            name: name,
+            style: style,
+            codeColor: codeColor,
+            colorSlug: colorSlug,
+            color: color,
+            onSale: onSale,
+            regularPrice: regularPrice,
+            actualPrice: actualPrice,
+            discountPercentage: discountPercentage,
+            installments: installments,
+            image: image,
+            sizes: sizes.map({ $0.toDomain() })
+        )
     }
 }

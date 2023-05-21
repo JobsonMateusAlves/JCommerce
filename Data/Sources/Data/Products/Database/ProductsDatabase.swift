@@ -11,6 +11,7 @@ public protocol ProductsDatabase {
     func save(products: [ProductObject]) throws
     func save(product: ProductObject) throws
     func getProducts() -> [ProductObject]
+    func getProduct(by codeColor: String) -> ProductObject?
 }
 
 public class ProductsDatabaseImpl: ProductsDatabase {
@@ -29,7 +30,7 @@ public class ProductsDatabaseImpl: ProductsDatabase {
     
     public func save(product: ProductObject) throws {
         try database.realm?.write {
-            database.realm?.add(product)
+            database.realm?.add(product, update: .modified)
         }
     }
     
@@ -40,5 +41,9 @@ public class ProductsDatabaseImpl: ProductsDatabase {
             return products
         }
         return []
+    }
+    
+    public func getProduct(by codeColor: String) -> ProductObject? {
+        database.realm?.object(ofType: ProductObject.self, forPrimaryKey: codeColor)
     }
 }

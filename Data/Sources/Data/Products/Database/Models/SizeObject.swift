@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Domain
 
 public class SizeObject: Object {
     @Persisted(primaryKey: true) var sku: String = ""
@@ -18,5 +19,15 @@ public class SizeObject: Object {
         self.sku = sku
         self.available = available
         self.size = size
+    }
+}
+
+extension SizeObject {
+    func toDomain() -> Domain.Size {
+        Domain.Size(
+            available: available,
+            size: size,
+            sku: sku
+        )
     }
 }
