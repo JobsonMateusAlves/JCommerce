@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ProductItemObject.swift
 //  
 //
 //  Created by Jobson Mateus on 20/05/23.
