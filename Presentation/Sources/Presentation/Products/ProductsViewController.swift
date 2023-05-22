@@ -58,7 +58,7 @@ public class ProductsViewController: UIViewController {
     }
     
     func loadData() {
-        viewModel.fetchProducts { [weak self] in
+        viewModel.fetchProducts(onSale: false) { [weak self] in
             self?.collectionView.reloadData()
         }
     }
@@ -133,6 +133,7 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductsHeaderCollectionReusableView", for: indexPath) as! ProductsHeaderCollectionReusableView
 
             headerView.bind(numberOfProducts: viewModel.numberOfProducts)
+            headerView.delegate = self
             return headerView
         }
 
@@ -141,6 +142,16 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 32)
+    }
+}
+
+extension ProductsViewController: ProductsHeaderCollectionReusableViewDelegate {
+    func onChangeOnSaleFilterLabel(value: Bool) {
+        print(value)
+        viewModel.fetchProducts(onSale: value) { [weak self] in
+            print(self?.viewModel.numberOfProducts)
+            self?.collectionView.reloadData()
+        }
     }
 }
 

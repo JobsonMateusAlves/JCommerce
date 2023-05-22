@@ -11,7 +11,7 @@ import Domain
 public protocol ProductsViewModel {
     var numberOfProducts: Int { get }
     var error: String? { get }
-    func fetchProducts(completion: @escaping (() -> Void))
+    func fetchProducts(onSale: Bool, completion: @escaping (() -> Void))
     func productAt(index: Int) -> Product
 }
 
@@ -26,8 +26,8 @@ public class ProductsViewModelImpl: ProductsViewModel {
         self.useCase = useCase
     }
 
-    public func fetchProducts(completion: @escaping (() -> Void)) {
-        useCase.fetchProducts { [weak self] result in
+    public func fetchProducts(onSale: Bool, completion: @escaping (() -> Void)) {
+        useCase.fetchProducts(onSale: onSale) { [weak self] result in
             switch result {
             case .success(let products):
                 self?.products = products
