@@ -31,7 +31,14 @@ public class PurchasesUseCasesImpl: PurchasesUseCases {
                 pending: true
             )
             
-            newPurchase.items.append(productItem)
+            if let productItemExistingIndex = newPurchase.items.firstIndex(
+                where: { $0.product?.codeColor == productItem.product?.codeColor && $0.size?.sku == productItem.size?.sku }
+            ) {
+                newPurchase.items[productItemExistingIndex].amount += 1
+            } else {
+                newPurchase.items.append(productItem)
+            }
+            
             self?.repository.savePurchase(
                 purchase: newPurchase,
                 completion: { result in
