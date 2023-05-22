@@ -147,9 +147,7 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProductsViewController: ProductsHeaderCollectionReusableViewDelegate {
     func onChangeOnSaleFilterLabel(value: Bool) {
-        print(value)
         viewModel.fetchProducts(onSale: value) { [weak self] in
-            print(self?.viewModel.numberOfProducts)
             self?.collectionView.reloadData()
         }
     }
