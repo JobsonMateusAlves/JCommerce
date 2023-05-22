@@ -14,16 +14,16 @@ public protocol ProductsViewModel {
     func productAt(index: Int) -> Product
 }
 
-public class ProductsViewModelImpl: ProductsViewModel {
+class ProductsViewModelImpl: ProductsViewModel {
     
     private let getProductListUseCase: GetProductListUseCase
     private var products: [Product] = []
 
-    public init(getProductListUseCase: GetProductListUseCase) {
+    init(getProductListUseCase: GetProductListUseCase) {
         self.getProductListUseCase = getProductListUseCase
     }
 
-    public func fetchProducts(filterByOnSale: Bool, completion: @escaping (() -> Void)) {
+    func fetchProducts(filterByOnSale: Bool, completion: @escaping (() -> Void)) {
         getProductListUseCase.call(filterByOnSale: filterByOnSale) { [weak self] result in
             switch result {
             case .success(let products):
@@ -38,11 +38,11 @@ public class ProductsViewModelImpl: ProductsViewModel {
 }
 
 extension ProductsViewModelImpl {
-    public var numberOfProducts: Int {
+    var numberOfProducts: Int {
         products.count
     }
 
-    public func productAt(index: Int) -> Product {
+    func productAt(index: Int) -> Product {
         products[index]
     }
 }

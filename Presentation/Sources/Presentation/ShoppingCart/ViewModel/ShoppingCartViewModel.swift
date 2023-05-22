@@ -19,16 +19,16 @@ public protocol ShoppingCartViewModel {
     func remove(productItem: ProductItem, completion: @escaping () -> Void)
 }
 
-public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
+class ShoppingCartViewModelImpl: ShoppingCartViewModel {
     private let getProductItemsInCurrentPurchaseUseCase: GetProductItemsInCurrentPurchaseUseCase
     private let addProductItemUseCase: AddProductItemUseCase
     private let decrementProductItemUseCase: DecrementProductItemUseCase
     private let deleteProductItemUseCase: DeleteProductItemUseCase
     
     private var productItems: [ProductItem] = []
-    public var fetchProductItemsError: String?
+    var fetchProductItemsError: String?
 
-    public init(
+    init(
         getProductItemsInCurrentPurchaseUseCase: GetProductItemsInCurrentPurchaseUseCase,
         addProductItemUseCase: AddProductItemUseCase,
         decrementProductItemUseCase: DecrementProductItemUseCase,
@@ -40,7 +40,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         self.deleteProductItemUseCase = deleteProductItemUseCase
     }
     
-    public func fetchProductItems(completion: @escaping () -> Void) {
+    func fetchProductItems(completion: @escaping () -> Void) {
         getProductItemsInCurrentPurchaseUseCase.call { [weak self] result in
             switch result {
             case .success(let response):
@@ -53,7 +53,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         }
     }
     
-    public func increaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
+    func increaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
         productItems[index].amount += 1
         
@@ -68,7 +68,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         }
     }
     
-    public func decreaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
+    func decreaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
         guard productItems[index].amount > 1 else { return }
         productItems[index].amount -= 1
@@ -84,7 +84,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         }
     }
     
-    public func remove(productItem: ProductItem, completion: @escaping () -> Void) {
+    func remove(productItem: ProductItem, completion: @escaping () -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
         deleteProductItemUseCase.call(productItems[index]) { [weak self] result in
             switch result {
