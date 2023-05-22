@@ -13,15 +13,15 @@ public protocol AddProductItemUseCase {
 }
 
 // MARK: Implementation
-public class AddProductItemUseCaseImpl: AddProductItemUseCase {
+class AddProductItemUseCaseImpl: AddProductItemUseCase {
 
     private let repository: PurchasesRepository
     
-    public init(repository: PurchasesRepository) {
+    init(repository: PurchasesRepository) {
         self.repository = repository
     }
     
-    public func call(_ productItem: ProductItem, completion: @escaping (Result<Purchase, Error>) -> Void) {
+    func call(_ productItem: ProductItem, completion: @escaping (Result<Purchase, Error>) -> Void) {
         let pending: Bool = true
         repository.fetchPurchase(by: pending) { [weak self] purchase in
             let currentPurchase: Purchase = purchase ?? Purchase(

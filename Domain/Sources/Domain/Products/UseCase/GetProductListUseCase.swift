@@ -13,15 +13,15 @@ public protocol GetProductListUseCase {
 }
 
 // MARK: Implementation
-public final class GetProductListUseCaseImpl: GetProductListUseCase {
+final class GetProductListUseCaseImpl: GetProductListUseCase {
 
     private let repository: ProductsRepository
     
-    public init(repository: ProductsRepository) {
+    init(repository: ProductsRepository) {
         self.repository = repository
     }
     
-    public func call(filterByOnSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void) {
+    func call(filterByOnSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void) {
         repository.fetchProducts { result in
             switch result {
             case .success(let response):

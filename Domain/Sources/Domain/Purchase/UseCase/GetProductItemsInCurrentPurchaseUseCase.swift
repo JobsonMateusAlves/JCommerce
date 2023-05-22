@@ -13,15 +13,15 @@ public protocol GetProductItemsInCurrentPurchaseUseCase {
 }
 
 // MARK: Implementation
-public class GetProductItemsInCurrentPurchaseUseCaseImpl: GetProductItemsInCurrentPurchaseUseCase {
+class GetProductItemsInCurrentPurchaseUseCaseImpl: GetProductItemsInCurrentPurchaseUseCase {
     
     private let repository: PurchasesRepository
     
-    public init(repository: PurchasesRepository) {
+    init(repository: PurchasesRepository) {
         self.repository = repository
     }
     
-    public func call(completion: @escaping (Result<[ProductItem], Error>) -> Void) {
+    func call(completion: @escaping (Result<[ProductItem], Error>) -> Void) {
         let pending: Bool = true
         repository.fetchPurchase(by: pending) { purchase in
             let currentPurchase: Purchase = purchase ?? Purchase(
