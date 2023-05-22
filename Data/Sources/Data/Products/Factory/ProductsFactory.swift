@@ -10,10 +10,14 @@ import Domain
 
 public struct ProductsFactory {
     public static func makeRepository() -> ProductsRepository {
-        ProductsRepositoryImpl(service: makeService())
+        ProductsRepositoryImpl(service: makeService(), database: makeDatabase())
     }
     
-    public static func makeService() -> ProductsService {
+    static func makeService() -> ProductsService {
         ProductsServiceImpl()
+    }
+    
+    static func makeDatabase() -> ProductsDatabase {
+        ProductsDatabaseImpl(database: Database.shared)
     }
 }

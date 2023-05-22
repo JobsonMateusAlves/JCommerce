@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-public final class Database {
-    public static let shared: Database = {
+final class Database {
+    static let shared: Database = {
         Database()
     }()
     

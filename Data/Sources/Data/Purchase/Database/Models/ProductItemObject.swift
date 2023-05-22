@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class ProductItemObject: Object {
+class ProductItemObject: Object {
     @Persisted(primaryKey: true) var id: String = ""
     @Persisted var product: ProductObject?
     @Persisted var size: SizeObject?

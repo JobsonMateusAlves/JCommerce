@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class Provider {
+class Provider {
     
-    public init() {}
+    init() {}
     
     func request<V: Codable>(
         target: API,

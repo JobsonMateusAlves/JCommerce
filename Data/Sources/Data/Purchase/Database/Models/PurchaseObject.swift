@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class PurchaseObject: Object {
+class PurchaseObject: Object {
     @Persisted(primaryKey: true) var id: String = ""
     @Persisted var items: List<ProductItemObject> = List<ProductItemObject>()
     @Persisted var pending: Bool = true

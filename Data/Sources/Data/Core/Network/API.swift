@@ -8,14 +8,14 @@
 import Foundation
 
 /// HTTP Methods
-public enum HTTPMethod: String {
+enum HTTPMethod: String {
    case GET
    case POST
    case DELETE
    case PUT
 }
 
-public protocol API {
+protocol API {
     
     var url: String { get }
     

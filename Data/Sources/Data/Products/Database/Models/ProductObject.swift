@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class ProductObject: Object {
+class ProductObject: Object {
     @Persisted(primaryKey: true) var codeColor: String = ""
     @Persisted var name: String = ""
     @Persisted var style: String = ""

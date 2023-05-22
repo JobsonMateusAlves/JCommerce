@@ -8,16 +8,16 @@
 import Foundation
 import Domain
 
-public final class ProductsRepositoryImpl: Domain.ProductsRepository {
+final class ProductsRepositoryImpl: Domain.ProductsRepository {
     let service: ProductsService
     let database: ProductsDatabase
     
-    public init(service: ProductsService, database: ProductsDatabase = ProductsDatabaseImpl(database: Database.shared)) {
+    init(service: ProductsService, database: ProductsDatabase) {
         self.service = service
         self.database = database
     }
     
-    public func fetchProducts(completion: @escaping (Result<[Domain.Product], Error>) -> Void) {
+    func fetchProducts(completion: @escaping (Result<[Domain.Product], Error>) -> Void) {
         service.fetchProducts { [weak self] result in
             switch result {
             case .success(let response):

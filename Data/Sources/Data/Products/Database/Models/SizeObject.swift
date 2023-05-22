@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class SizeObject: Object {
+class SizeObject: Object {
     @Persisted(primaryKey: true) var sku: String = ""
     @Persisted var available: Bool = false
     @Persisted var size: String = ""
