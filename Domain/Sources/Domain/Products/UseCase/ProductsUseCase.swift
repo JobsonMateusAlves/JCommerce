@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: protocol
 public protocol ProductsUseCase {
-    func fetchProducts(onSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void)
+    func fetchProducts(filterByOnSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void)
 }
 
 // MARK: Implementation
@@ -21,11 +21,15 @@ public final class ProductsUseCaseImpl: ProductsUseCase {
         self.repository = repository
     }
     
-    public func fetchProducts(onSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void) {
+    public func fetchProducts(filterByOnSale: Bool, completion: @escaping (Result<[Product], Error>) -> Void) {
         repository.fetchProducts { result in
             switch result {
             case .success(let response):
-                completion(.success(response.filter({ $0.onSale == onSale })))
+                if filterByOnSale {
+                    completion(.success(response.filter({ $0.onSale })))
+                } else {
+                    completion(.success(response))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }

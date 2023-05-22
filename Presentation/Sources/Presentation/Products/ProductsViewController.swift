@@ -58,7 +58,7 @@ public class ProductsViewController: UIViewController {
     }
     
     func loadData() {
-        viewModel.fetchProducts(onSale: false) { [weak self] in
+        viewModel.fetchProducts(filterByOnSale: false) { [weak self] in
             self?.collectionView.reloadData()
         }
     }
@@ -147,7 +147,7 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProductsViewController: ProductsHeaderCollectionReusableViewDelegate {
     func onChangeOnSaleFilterLabel(value: Bool) {
-        viewModel.fetchProducts(onSale: value) { [weak self] in
+        viewModel.fetchProducts(filterByOnSale: value) { [weak self] in
             self?.collectionView.reloadData()
         }
     }
