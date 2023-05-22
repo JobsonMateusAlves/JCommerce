@@ -24,12 +24,12 @@ public class ProductDetailViewModelImpl: ProductDetailViewModel {
     public var selectedSize: Size?
     public var addToShoppingCartError: String?
     
-    private let purchaseUseCases: PurchasesUseCases
+    private let useCases: PurchasesUseCases
     private var completion: (() -> Void)?
 
     public init(product: Product, purchaseUseCases: PurchasesUseCases) {
         self.product = product
-        self.purchaseUseCases = purchaseUseCases
+        self.useCases = purchaseUseCases
         self.selectedSize = product.sizes.count == 1 ? product.sizes.first : nil
     }
     
@@ -49,7 +49,7 @@ public class ProductDetailViewModelImpl: ProductDetailViewModel {
             size: selectedSize,
             amount: 1
         )
-        purchaseUseCases.addProductItem(productItem) { [weak self] result in
+        useCases.addProductItem(productItem) { [weak self] result in
             switch result {
             case .success:
                 completion()

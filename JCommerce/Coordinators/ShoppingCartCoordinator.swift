@@ -8,6 +8,7 @@
 import UIKit
 import Domain
 import Presentation
+import Data
 
 class ShoppingCartCoordinator: Coordinator, ShoppingCart {
     var finish: (() -> Void)?
@@ -19,8 +20,14 @@ class ShoppingCartCoordinator: Coordinator, ShoppingCart {
     }
 
     func start() {
+        let viewModel = Presentation.ShoppingCartFactory.makeViewModel(
+            useCases: Domain.PurchaseFactory.makeUseCase(
+                repository: PurchaseFactory.makeRepository()
+            )
+        )
+        
         let controller = ShoppingCartViewController(
-            viewModel: ShoppingCartFactory.createViewModel(),
+            viewModel: viewModel,
             coordinator: self
         )
         navigationController.pushViewController(controller, animated: true)

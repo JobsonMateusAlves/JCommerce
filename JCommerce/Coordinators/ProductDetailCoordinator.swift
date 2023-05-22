@@ -8,6 +8,7 @@
 import UIKit
 import Domain
 import Presentation
+import Data
 
 class ProductDetailCoordinator: Coordinator, ProductDetail {
     var finish: (() -> Void)?
@@ -21,8 +22,15 @@ class ProductDetailCoordinator: Coordinator, ProductDetail {
 
     func start() {
         if let product = self.product {
+            let viewModel = Presentation.ProductDetailFactory.makeViewModel(
+                product: product,
+                useCases: Domain.PurchaseFactory.makeUseCase(
+                    repository: PurchaseFactory.makeRepository()
+                )
+            )
+            
             let controller = ProductDetailViewController(
-                viewModel: ProductDetailFactory.createViewModel(product: product),
+                viewModel: viewModel,
                 coordinator: self
             )
             navigationController.pushViewController(controller, animated: true)
