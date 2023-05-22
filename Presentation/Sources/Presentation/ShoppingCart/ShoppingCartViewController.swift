@@ -17,7 +17,7 @@ public class ShoppingCartViewController: UIViewController {
         let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .primaryBackgroundColor
-        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -81,8 +81,8 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductItemTableViewCell", for: indexPath) as? ProductItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.delegate = self
         cell.bind(productItem: viewModel.productItemAt(index: indexPath.row))
+        cell.delegate = self
         return cell
     }
     
@@ -93,15 +93,24 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
 
 extension ShoppingCartViewController: ProductItemTableViewCellDelegate {
     func increaseAmount(productItem: Domain.ProductItem) {
-//        viewModel.increaseAmount(productItem: productItem) { [weak self] index in
-//            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-//        }
+        viewModel.increaseAmount(productItem: productItem) { [weak self] index in
+            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            self?.totalPurchaseView.bind(totalProductsPrice: self?.viewModel.totalProductsPrice ?? "0")
+        }
     }
     
     func decreaseAmount(productItem: Domain.ProductItem) {
-//        viewModel.decreaseAmount(productItem: productItem) { [weak self] index in
-//            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-//        }
+        viewModel.decreaseAmount(productItem: productItem) { [weak self] index in
+            self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            self?.totalPurchaseView.bind(totalProductsPrice: self?.viewModel.totalProductsPrice ?? "0")
+        }
+    }
+    
+    func remove(productItem: Domain.ProductItem) {
+        viewModel.remove(productItem: productItem) { [weak self] in
+            self?.tableView.reloadData()
+            self?.totalPurchaseView.bind(totalProductsPrice: self?.viewModel.totalProductsPrice ?? "0")
+        }
     }
 }
 

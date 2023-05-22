@@ -16,10 +16,10 @@ public protocol ShoppingCartViewModel {
     func fetchProductItems(completion: @escaping () -> Void)
     func increaseAmount(productItem: ProductItem, completion: @escaping (Int) -> Void)
     func decreaseAmount(productItem: ProductItem, completion: @escaping (Int) -> Void)
+    func remove(productItem: ProductItem, completion: @escaping () -> Void)
 }
 
 public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
-    
     private let useCases: PurchasesUseCases
     private var productItems: [ProductItem] = []
     public var fetchProductItemsError: String?
@@ -44,14 +44,44 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
     public func increaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
         productItems[index].amount += 1
-        completion(index)
+        
+        useCases.addProductItem(productItems[index]) { [weak self] result in
+            switch result {
+            case .success:
+                completion(index)
+            case .failure:
+                self?.productItems[index].amount -= 1
+                completion(index)
+            }
+        }
     }
     
     public func decreaseAmount(productItem: Domain.ProductItem, completion: @escaping (Int) -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
-        if productItems[index].amount > 1 {
-            productItems[index].amount -= 1
-            completion(index)
+        guard productItems[index].amount > 1 else { return }
+        productItems[index].amount -= 1
+        
+        useCases.removeProductItem(productItems[index], type: .decrease) { [weak self] result in
+            switch result {
+            case .success:
+                completion(index)
+            case .failure:
+                self?.productItems[index].amount += 1
+                completion(index)
+            }
+        }
+    }
+    
+    public func remove(productItem: ProductItem, completion: @escaping () -> Void) {
+        guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
+        useCases.removeProductItem(productItems[index], type: .delete) { [weak self] result in
+            switch result {
+            case .success(let purchase):
+                self?.productItems = purchase.items
+                completion()
+            case .failure:
+                completion()
+            }
         }
     }
 }
@@ -75,7 +105,7 @@ extension ShoppingCartViewModelImpl {
             
             return partialResult + (Double(productItem.amount) * price)
         }
-        return "R$ \(sum)"
+        return "R$ \(sum.toString(with: 2))"
     }
 
     public func productItemAt(index: Int) -> ProductItem {

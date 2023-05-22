@@ -51,12 +51,14 @@ class TotalPurchaseView: UIView {
         super.init(frame: frame)
         setupLayout()
         setupShadow()
+        setupButton()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupLayout()
         setupShadow()
+        setupButton()
     }
     
     func bind(totalProductsPrice: String) {
@@ -64,11 +66,19 @@ class TotalPurchaseView: UIView {
     }
     
     // MARK: setup
+    func setupButton() {
+        continueButton.addTarget(self, action: #selector(teste), for: .touchUpInside)
+    }
+    
     func setupShadow() {
         layer.shadowColor = UIColor.shadow.cgColor
         layer.shadowOpacity = 0.3
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 8
+    }
+    
+    @objc func teste() {
+        print("jesus me ajuda")
     }
 }
 

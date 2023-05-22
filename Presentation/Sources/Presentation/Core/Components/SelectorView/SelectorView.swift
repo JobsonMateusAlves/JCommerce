@@ -31,7 +31,6 @@ class SelectorView: UIView {
     weak var delegate: SelectorViewDelegate?
     
     // MARK: Inits
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()

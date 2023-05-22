@@ -11,17 +11,10 @@ import Domain
 protocol ProductItemTableViewCellDelegate: AnyObject {
     func increaseAmount(productItem: ProductItem)
     func decreaseAmount(productItem: ProductItem)
+    func remove(productItem: ProductItem)
 }
 
 class ProductItemTableViewCell: UITableViewCell {
-    
-    let view: UIView = {
-        let view: UIImageView = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondaryBackgroundColor
-        view.layer.cornerRadius = 8
-        return view
-    }()
     
     let productItemImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
@@ -42,10 +35,28 @@ class ProductItemTableViewCell: UITableViewCell {
         return label
     }()
     
+    let itemInfoStackView: UIStackView = {
+        let stackView: UIStackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
     let colorLabel: UILabel = {
         let label: UILabel = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 15, weight: .regular)
+        return label
+    }()
+    
+    let sizeLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.textAlignment = .left
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label
     }()
@@ -64,6 +75,7 @@ class ProductItemTableViewCell: UITableViewCell {
         button.setImage(UIImage(systemName: "minus"), for: .normal)
         button.tintColor = .primaryColor
         button.contentHorizontalAlignment = .left
+        button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -73,6 +85,7 @@ class ProductItemTableViewCell: UITableViewCell {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .primaryColor
         button.contentHorizontalAlignment = .right
+        button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -176,6 +189,7 @@ class ProductItemTableViewCell: UITableViewCell {
         
         setColorLabel(color: productItem.product?.color ?? "-")
         setRegularPriceLabel(price: productItem.product?.regularPrice ?? "")
+        setSizeLabel(size: productItem.size?.size ?? "")
         
         saleStackView.isHidden = !(productItem.product?.onSale ?? true)
     }
@@ -195,31 +209,43 @@ class ProductItemTableViewCell: UITableViewCell {
         colorLabel.attributedText = attributedText
     }
     
+    func setSizeLabel(size: String) {
+        let attributedText = NSMutableAttributedString(string: "Tamanho: ")
+        let fontAttribute: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 15, weight: .bold)
+        ]
+        attributedText.append(NSAttributedString(string: "\(size.capitalized)", attributes: fontAttribute))
+        sizeLabel.attributedText = attributedText
+    }
+    
     func setupButtons() {
         increaseButton.addTarget(self, action: #selector(increaseAmount), for: .touchUpInside)
         decreaseButton.addTarget(self, action: #selector(decreaseAmount), for: .touchUpInside)
+        removeButton.addTarget(self, action: #selector(remove), for: .touchUpInside)
     }
     
     @objc func increaseAmount() {
-        print("Teste increaseAmount")
+        guard let productItem = self.productItem else { return }
+        delegate?.increaseAmount(productItem: productItem)
+    }
+    
+    @objc func decreaseAmount() {
         guard let productItem = self.productItem else { return }
         delegate?.decreaseAmount(productItem: productItem)
     }
     
-    @objc func decreaseAmount() {
-        print("Teste decreaseAmount")
+    @objc func remove() {
         guard let productItem = self.productItem else { return }
-        delegate?.decreaseAmount(productItem: productItem)
+        delegate?.remove(productItem: productItem)
     }
 }
 
 // MARK: Layout
 extension ProductItemTableViewCell {
     func setupLayout() {
-        setupViewLayout()
         setupProductImageViewLayout()
         setupNameLabelLayout()
-        setupColorLabelLayout()
+        setupItemInfoStackViewLayout()
         setupRemoveButtonLayout()
         setupDecreaseButtonLayout()
         setupAmountLabelLayout()
@@ -229,25 +255,12 @@ extension ProductItemTableViewCell {
         backgroundColor = .clear
     }
     
-    func setupViewLayout() {
-        addSubview(view)
-        
-        let constraints: [NSLayoutConstraint] = [
-            view.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-    
     func setupProductImageViewLayout() {
-        view.addSubview(productItemImageView)
+        contentView.addSubview(productItemImageView)
         
         let constraints: [NSLayoutConstraint] = [
-            productItemImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            productItemImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            productItemImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            productItemImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             productItemImageView.widthAnchor.constraint(equalToConstant: 48),
             productItemImageView.heightAnchor.constraint(equalToConstant: 48)
         ]
@@ -256,7 +269,7 @@ extension ProductItemTableViewCell {
     }
     
     func setupNameLabelLayout() {
-        view.addSubview(nameLabel)
+        contentView.addSubview(nameLabel)
         
         let constraints: [NSLayoutConstraint] = [
             nameLabel.topAnchor.constraint(equalTo: productItemImageView.topAnchor),
@@ -266,25 +279,28 @@ extension ProductItemTableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func setupColorLabelLayout() {
-        view.addSubview(colorLabel)
+    func setupItemInfoStackViewLayout() {
+        contentView.addSubview(itemInfoStackView)
+        
+        itemInfoStackView.addArrangedSubview(colorLabel)
+        itemInfoStackView.addArrangedSubview(sizeLabel)
         
         let constraints: [NSLayoutConstraint] = [
-            colorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            colorLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            colorLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor)
+            itemInfoStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            itemInfoStackView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            itemInfoStackView.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
     }
     
     func setupRemoveButtonLayout() {
-        view.addSubview(removeButton)
+        contentView.addSubview(removeButton)
         
         let constraints: [NSLayoutConstraint] = [
             removeButton.centerYAnchor.constraint(equalTo: productItemImageView.centerYAnchor),
             removeButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8),
-            removeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            removeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             removeButton.widthAnchor.constraint(equalToConstant: 32),
             removeButton.heightAnchor.constraint(equalToConstant: 32)
         ]
@@ -293,7 +309,7 @@ extension ProductItemTableViewCell {
     }
     
     func setupDecreaseButtonLayout() {
-        view.addSubview(decreaseButton)
+        contentView.addSubview(decreaseButton)
         
         let constraints: [NSLayoutConstraint] = [
             decreaseButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
@@ -305,7 +321,7 @@ extension ProductItemTableViewCell {
     }
     
     func setupAmountLabelLayout() {
-        view.addSubview(amountLabel)
+        contentView.addSubview(amountLabel)
         
         let constraints: [NSLayoutConstraint] = [
             amountLabel.topAnchor.constraint(equalTo: productItemImageView.bottomAnchor, constant: 16),
@@ -319,12 +335,12 @@ extension ProductItemTableViewCell {
     }
     
     func setupIncreaseButtonLayout() {
-        view.addSubview(increaseButton)
+        contentView.addSubview(increaseButton)
         
         let constraints: [NSLayoutConstraint] = [
             increaseButton.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
             increaseButton.leadingAnchor.constraint(equalTo: amountLabel.trailingAnchor, constant: 4),
-            increaseButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
+            increaseButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
             increaseButton.widthAnchor.constraint(equalToConstant: 32),
             increaseButton.heightAnchor.constraint(equalToConstant: 32)
         ]
@@ -333,7 +349,7 @@ extension ProductItemTableViewCell {
     }
     
     func setupPriceStackViewLayout() {
-        view.addSubview(priceStackView)
+        contentView.addSubview(priceStackView)
         
         saleStackView.addArrangedSubview(discountLabel)
         saleStackView.addArrangedSubview(regularPriceLabel)
@@ -343,9 +359,9 @@ extension ProductItemTableViewCell {
         
         let constraints: [NSLayoutConstraint] = [
             priceStackView.centerYAnchor.constraint(equalTo: decreaseButton.centerYAnchor),
-            priceStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            priceStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             priceStackView.leadingAnchor.constraint(greaterThanOrEqualTo: increaseButton.trailingAnchor, constant: 8),
-            priceStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -16)
+            priceStackView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -16)
         ]
         
         NSLayoutConstraint.activate(constraints)
