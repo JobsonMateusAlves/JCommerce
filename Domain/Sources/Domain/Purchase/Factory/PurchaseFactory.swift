@@ -8,7 +8,19 @@
 import Foundation
 
 public struct PurchaseFactory {
-    public static func makeUseCase(repository: PurchasesRepository) -> PurchasesUseCases {
-        PurchasesUseCasesImpl(repository: repository)
+    public static func makeAddProductItemUseCase(repository: PurchasesRepository) -> AddProductItemUseCase {
+        AddProductItemUseCaseImpl(repository: repository)
+    }
+    
+    public static func makeAddProductItemUseCase(repository: PurchasesRepository) -> DecrementProductItemUseCase {
+        DecrementProductItemUseCaseImpl(repository: repository)
+    }
+    
+    public static func makeAddProductItemUseCase(repository: PurchasesRepository) -> DeleteProductItemUseCase {
+        DeleteProductItemUseCaseImpl(repository: repository)
+    }
+    
+    public static func makeAddProductItemUseCase(repository: PurchasesRepository) -> GetProductItemsInCurrentPurchaseUseCase {
+        GetProductItemsInCurrentPurchaseUseCaseImpl(repository: repository)
     }
 }

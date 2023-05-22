@@ -8,7 +8,7 @@
 import Foundation
 
 public struct ProductsFactory {
-    public static func makeUseCase(repository: ProductsRepository) -> ProductsUseCase {
-        ProductsUseCaseImpl(repository: repository)
+    public static func makeUseCase(repository: ProductsRepository) -> GetProductListUseCase {
+        GetProductListUseCaseImpl(repository: repository)
     }
 }

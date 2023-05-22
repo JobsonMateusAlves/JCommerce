@@ -9,7 +9,7 @@ import Foundation
 import Domain
 
 public struct ProductDetailFactory {
-    public static func makeViewModel(product: Product, useCases: PurchasesUseCases) -> ProductDetailViewModel {
-        ProductDetailViewModelImpl(product: product, purchaseUseCases: useCases)
+    public static func makeViewModel(product: Product, addProductItemUseCase: AddProductItemUseCase) -> ProductDetailViewModel {
+        ProductDetailViewModelImpl(product: product, addProductItemUseCase: addProductItemUseCase)
     }
 }

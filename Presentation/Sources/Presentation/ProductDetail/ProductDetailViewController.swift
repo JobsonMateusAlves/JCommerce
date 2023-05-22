@@ -200,10 +200,6 @@ public class ProductDetailViewController: UIViewController {
     
     @objc func addToShoppingCart() {
         viewModel.addToShoppingCart { [weak self] in
-            if let _ = self?.viewModel.addToShoppingCartError {
-                return
-            }
-            
             self?.coordinator.finishProductDetailFlow()
         }
     }

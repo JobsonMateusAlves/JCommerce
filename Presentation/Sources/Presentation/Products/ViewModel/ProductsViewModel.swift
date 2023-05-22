@@ -10,31 +10,27 @@ import Domain
 
 public protocol ProductsViewModel {
     var numberOfProducts: Int { get }
-    var error: String? { get }
     func fetchProducts(filterByOnSale: Bool, completion: @escaping (() -> Void))
     func productAt(index: Int) -> Product
 }
 
 public class ProductsViewModelImpl: ProductsViewModel {
     
-    private let useCase: ProductsUseCase
-
+    private let getProductListUseCase: GetProductListUseCase
     private var products: [Product] = []
-    private var fetchProductsError: String?
 
-    public init(useCase: ProductsUseCase) {
-        self.useCase = useCase
+    public init(getProductListUseCase: GetProductListUseCase) {
+        self.getProductListUseCase = getProductListUseCase
     }
 
     public func fetchProducts(filterByOnSale: Bool, completion: @escaping (() -> Void)) {
-        useCase.fetchProducts(filterByOnSale: filterByOnSale) { [weak self] result in
+        getProductListUseCase.call(filterByOnSale: filterByOnSale) { [weak self] result in
             switch result {
             case .success(let products):
                 self?.products = products
                 completion()
                 
-            case .failure(let error):
-                self?.fetchProductsError = error.localizedDescription
+            case .failure:
                 completion()
             }
         }
@@ -44,10 +40,6 @@ public class ProductsViewModelImpl: ProductsViewModel {
 extension ProductsViewModelImpl {
     public var numberOfProducts: Int {
         products.count
-    }
-    
-    public var error: String? {
-        fetchProductsError
     }
 
     public func productAt(index: Int) -> Product {

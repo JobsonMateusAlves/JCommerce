@@ -20,16 +20,28 @@ public protocol ShoppingCartViewModel {
 }
 
 public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
-    private let useCases: PurchasesUseCases
+    private let getProductItemsInCurrentPurchaseUseCase: GetProductItemsInCurrentPurchaseUseCase
+    private let addProductItemUseCase: AddProductItemUseCase
+    private let decrementProductItemUseCase: DecrementProductItemUseCase
+    private let deleteProductItemUseCase: DeleteProductItemUseCase
+    
     private var productItems: [ProductItem] = []
     public var fetchProductItemsError: String?
 
-    public init(useCases: PurchasesUseCases) {
-        self.useCases = useCases
+    public init(
+        getProductItemsInCurrentPurchaseUseCase: GetProductItemsInCurrentPurchaseUseCase,
+        addProductItemUseCase: AddProductItemUseCase,
+        decrementProductItemUseCase: DecrementProductItemUseCase,
+        deleteProductItemUseCase: DeleteProductItemUseCase
+    ) {
+        self.getProductItemsInCurrentPurchaseUseCase = getProductItemsInCurrentPurchaseUseCase
+        self.addProductItemUseCase = addProductItemUseCase
+        self.decrementProductItemUseCase = decrementProductItemUseCase
+        self.deleteProductItemUseCase = deleteProductItemUseCase
     }
     
     public func fetchProductItems(completion: @escaping () -> Void) {
-        useCases.fetchProductItemsInCurrentPurchase { [weak self] result in
+        getProductItemsInCurrentPurchaseUseCase.call { [weak self] result in
             switch result {
             case .success(let response):
                 self?.productItems = response
@@ -45,7 +57,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
         productItems[index].amount += 1
         
-        useCases.addProductItem(productItems[index]) { [weak self] result in
+        addProductItemUseCase.call(productItems[index]) { [weak self] result in
             switch result {
             case .success:
                 completion(index)
@@ -61,7 +73,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
         guard productItems[index].amount > 1 else { return }
         productItems[index].amount -= 1
         
-        useCases.removeProductItem(productItems[index], type: .decrease) { [weak self] result in
+        decrementProductItemUseCase.call(productItems[index]) { [weak self] result in
             switch result {
             case .success:
                 completion(index)
@@ -74,7 +86,7 @@ public class ShoppingCartViewModelImpl: ShoppingCartViewModel {
     
     public func remove(productItem: ProductItem, completion: @escaping () -> Void) {
         guard let index: Int = productItems.firstIndex(where: { $0.id == productItem.id }) else { return }
-        useCases.removeProductItem(productItems[index], type: .delete) { [weak self] result in
+        deleteProductItemUseCase.call(productItems[index]) { [weak self] result in
             switch result {
             case .success(let purchase):
                 self?.productItems = purchase.items

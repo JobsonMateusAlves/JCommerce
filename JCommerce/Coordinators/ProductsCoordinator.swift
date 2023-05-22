@@ -8,7 +8,6 @@
 import UIKit
 import Domain
 import Presentation
-import Data
 
 class ProductsCoordinator: Coordinator, Products {
     var finish: (() -> Void)?
@@ -20,13 +19,11 @@ class ProductsCoordinator: Coordinator, Products {
     }
 
     func start() {
-        let viewModel = Presentation.ProductsFactory.makeViewModel(
-            useCase: Domain.ProductsFactory.makeUseCase(
-                repository: ProductsFactory.makeRepository()
-            )
-        )
         
-        let controller = ProductsViewController(viewModel: viewModel, coordinator: self)
+        let controller = ProductsViewController(
+            viewModel: ProductsFactory.createViewModel(),
+            coordinator: self
+        )
         UIView.transition(with: navigationController.view, duration: 0.5, options: [.transitionCrossDissolve]) { [weak self] in
             self?.navigationController.setViewControllers([controller], animated: true)
         }

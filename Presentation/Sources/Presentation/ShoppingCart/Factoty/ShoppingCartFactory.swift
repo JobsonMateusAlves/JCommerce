@@ -9,7 +9,17 @@ import Foundation
 import Domain
 
 public struct ShoppingCartFactory {
-    public static func makeViewModel(useCases: PurchasesUseCases) -> ShoppingCartViewModel {
-        ShoppingCartViewModelImpl(useCases: useCases)
+    public static func makeViewModel(
+        getProductItemsInCurrentPurchaseUseCase: GetProductItemsInCurrentPurchaseUseCase,
+        addProductItemUseCase: AddProductItemUseCase,
+        decrementProductItemUseCase: DecrementProductItemUseCase,
+        deleteProductItemUseCase: DeleteProductItemUseCase
+    ) -> ShoppingCartViewModel {
+        ShoppingCartViewModelImpl(
+            getProductItemsInCurrentPurchaseUseCase: getProductItemsInCurrentPurchaseUseCase,
+            addProductItemUseCase: addProductItemUseCase,
+            decrementProductItemUseCase: decrementProductItemUseCase,
+            deleteProductItemUseCase: deleteProductItemUseCase
+        )
     }
 }
