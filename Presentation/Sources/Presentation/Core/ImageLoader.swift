@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ImageLoader.swift
 //  
 //
 //  Created by Jobson Mateus on 19/05/23.
