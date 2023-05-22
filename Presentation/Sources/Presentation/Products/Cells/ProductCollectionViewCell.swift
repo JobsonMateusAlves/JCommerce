@@ -94,7 +94,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func bind(product: Product) {
-        
         productImageView.setPlaceholder(image: UIImage.placeholderImage)
         if let url = URL(string: product.image) {
             imageLoader.loadImage(with: url) { [weak self] image in
@@ -104,18 +103,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         nameLabel.text = product.name.capitalized
         actualPriceLabel.text = product.actualPrice
+        saleCapsuleView.text = "-\(product.discountPercentage)"
+        setRegularPriceLabel(product: product)
         
-        if product.onSale {
-            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: product.regularPrice)
-            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(location: 0, length: attributeString.length))
-            saleCapsuleView.text = "-\(product.discountPercentage)"
-            regularPriceLabel.attributedText = attributeString
-            saleCapsuleView.isHidden = false
-            regularPriceLabel.isHidden = false
-        } else {
-            saleCapsuleView.isHidden = true
-            regularPriceLabel.isHidden = true
-        }
+        saleCapsuleView.isHidden = !product.onSale
+        regularPriceLabel.isHidden = !product.onSale
+    }
+    
+    func setRegularPriceLabel(product: Product) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: product.regularPrice)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSRange(location: 0, length: attributeString.length))
+        regularPriceLabel.attributedText = attributeString
     }
 }
 
