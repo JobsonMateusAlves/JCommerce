@@ -48,7 +48,7 @@ extension UIColor {
 
 // MARK: - Other
 extension UIColor {
-    static let primaryColor: UIColor = UIColor(hex: "6618C8")
+    static let primaryColor: UIColor = UIColor(hex: "4F0894")
     static let border: UIColor = UIColor.black.withAlphaComponent(0.1)
     static let shadow: UIColor = UIColor.black
 }
