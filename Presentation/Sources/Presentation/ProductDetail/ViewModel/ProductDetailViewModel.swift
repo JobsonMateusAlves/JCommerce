@@ -12,6 +12,7 @@ public protocol ProductDetailViewModel {
     var product: Product { get set }
     var selectedSize: Size? { get set }
     var availableSizes: [Size] { get }
+    var enableConfirmButtons: Bool { get }
     func select(by title: String)
     func addToShoppingCart(completion: @escaping () -> Void)
     func onChange(_ completion: @escaping () -> Void)
@@ -55,5 +56,9 @@ class ProductDetailViewModelImpl: ProductDetailViewModel {
 extension ProductDetailViewModelImpl {
     var availableSizes: [Size] {
         product.sizes.filter({ $0.available })
+    }
+    
+    var enableConfirmButtons: Bool {
+        selectedSize != nil
     }
 }

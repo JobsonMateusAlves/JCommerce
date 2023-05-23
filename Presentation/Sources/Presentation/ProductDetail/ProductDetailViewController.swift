@@ -99,7 +99,7 @@ public class ProductDetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Adicionar ao carrinho", for: .normal)
         button.setTitleColor(UIColor.primaryColor, for: .normal)
-        button.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.2)
+        button.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.4)
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         button.layer.cornerRadius = 8
         return button
@@ -153,6 +153,19 @@ public class ProductDetailViewController: UIViewController {
     
     func setupButtons() {
         addToShoppingCartButton.addTarget(self, action: #selector(addToShoppingCart), for: .touchUpInside)
+        setupButtonColors()
+    }
+    
+    func setupButtonColors() {
+        let buyNowButtonTextColor = viewModel.enableConfirmButtons ? UIColor.terciaryText : UIColor.terciaryText.withAlphaComponent(0.5)
+        buyNowButton.setTitleColor(buyNowButtonTextColor, for: .normal)
+        buyNowButton.backgroundColor = viewModel.enableConfirmButtons ? UIColor.primaryColor: UIColor.primaryColor.withAlphaComponent(0.5)
+        buyNowButton.isEnabled = viewModel.enableConfirmButtons
+        
+        let addToShoppingCartTextColor = viewModel.enableConfirmButtons ? UIColor.primaryColor : UIColor.primaryColor.withAlphaComponent(0.5)
+        addToShoppingCartButton.setTitleColor(addToShoppingCartTextColor, for: .normal)
+        addToShoppingCartButton.backgroundColor = viewModel.enableConfirmButtons ? UIColor.primaryColor.withAlphaComponent(0.4): UIColor.primaryColor.withAlphaComponent(0.1)
+        addToShoppingCartButton.isEnabled = viewModel.enableConfirmButtons
     }
     
     // MARK: Functions
@@ -208,6 +221,7 @@ public class ProductDetailViewController: UIViewController {
 extension ProductDetailViewController: SelectorViewDelegate {
     func onSelect(item: SelectorItem) {
         viewModel.select(by: item.title)
+        setupButtonColors()
     }
 }
 
