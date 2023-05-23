@@ -1,35 +1,85 @@
 //
-//  DeleteProductItemUseCase.swift
+//  DeleteProductItemUseCaseTests.swift
 //  
 //
 //  Created by Jobson Mateus on 22/05/23.
 //
 
 import XCTest
+@testable import Domain
 
-final class DeleteProductItemUseCase: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+final class DeleteProductItemUseCaseTests: XCTestCase {
+    
+    let sizes = [
+        Size(
+            available: true,
+            size: "P",
+            sku: "5807_343_0_P"
+        ),
+        Size(
+            available: true,
+            size: "M",
+            sku: "5807_343_0_M"
+        ),
+        Size(
+            available: true,
+            size: "G",
+            sku: "5807_343_0_G"
+        )
+    ]
+    
+    var product1: Product {
+        Domain.Product(
+            name: "VESTIDO TRANSPASSE BOW",
+            style: "20002605",
+            codeColor: "20002605_613",
+            colorSlug: "tapecaria",
+            color: "TAPEÇARIA",
+            onSale: false,
+            regularPrice: "R$ 199,90",
+            actualPrice: "R$ 199,90",
+            discountPercentage: "",
+            installments: "3x R$ 66,63",
+            image: "https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912",
+            sizes: sizes
+        )
     }
+    
+    func testDecrementItem() {
+        let purchase = Purchase(
+            id: "Purchase_ID",
+            items: [
+                ProductItem(
+                    id: "ProductItem_ID",
+                    product: product1,
+                    size: sizes.first,
+                    amount: 2
+                )
+            ],
+            pending: true
+        )
+        
+        let repository = MockPurchaseRepository(purchase: purchase)
+        let useCase: DeleteProductItemUseCase = DeleteProductItemUseCaseImpl(
+            repository: repository
+        )
+        
+        useCase.call(
+            ProductItem(
+                id: "ProductItem_ID",
+                product: product1,
+                size: sizes.first,
+                amount: 1
+            ),
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    XCTAssertEqual(response.items.count, 0)
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                }
+            }
+        )
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

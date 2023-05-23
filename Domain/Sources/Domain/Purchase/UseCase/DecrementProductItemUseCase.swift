@@ -35,21 +35,21 @@ class DecrementProductItemUseCaseImpl: DecrementProductItemUseCase {
                 pending: true
             )
             
-            if let index = currentPurchase.items.firstIndex(where: { $0.id == productItem.id }) {
+            if let index = currentPurchase.items.firstIndex(where: { $0.id == productItem.id }), currentPurchase.items[index].amount > 1 {
                 currentPurchase.items[index].amount -= 1
-            }
-            
-            self?.repository.savePurchase(
-                purchase: currentPurchase,
-                completion: { result in
-                    switch result {
-                    case .success(let response):
-                        completion(.success(response))
-                    case .failure(let error):
-                        completion(.failure(error))
+                
+                self?.repository.savePurchase(
+                    purchase: currentPurchase,
+                    completion: { result in
+                        switch result {
+                        case .success(let response):
+                            completion(.success(response))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
     

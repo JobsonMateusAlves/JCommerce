@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Size {
+public struct Size: Equatable {
     public var available: Bool
     public var size: String
     public var sku: String

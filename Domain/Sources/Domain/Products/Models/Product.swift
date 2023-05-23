@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Product {
+public struct Product: Equatable {
     public var name: String
     public var style: String
     public var codeColor: String
