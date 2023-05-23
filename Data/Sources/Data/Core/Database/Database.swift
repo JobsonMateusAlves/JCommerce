@@ -8,11 +8,13 @@
 import Foundation
 import RealmSwift
 
-final class Database {
-    static let shared: Database = {
-        Database()
-    }()
-    
+protocol Database {
+    static var shared: Database { get set }
+    var realm: Realm? { get set }
+}
+
+final class DatabaseImpl: Database {
+    static var shared: Database = DatabaseImpl()
     var realm: Realm?
     
     private init() {

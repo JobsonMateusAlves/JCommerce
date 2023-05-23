@@ -27,7 +27,10 @@ final class ProductsRepositoryImpl: Domain.ProductsRepository {
                 completion(.success(productObjects.map({ $0.toDomain() })))
                 
             case .failure(let error):
-                
+                if let products: [Domain.Product] = self?.database.getProducts().map({ $0.toDomain() }) {
+                    completion(.success(products))
+                    return
+                }
                 completion(.failure(error))
             }
         }

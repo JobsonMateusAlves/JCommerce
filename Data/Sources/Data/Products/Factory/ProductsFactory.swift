@@ -18,6 +18,6 @@ public struct ProductsFactory {
     }
     
     static func makeDatabase() -> ProductsDatabase {
-        ProductsDatabaseImpl(database: Database.shared)
+        ProductsDatabaseImpl(database: DatabaseImpl.shared)
     }
 }

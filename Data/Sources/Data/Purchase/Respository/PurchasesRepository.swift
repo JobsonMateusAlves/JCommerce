@@ -13,7 +13,7 @@ final class PurchasesRepositoryImpl: Domain.PurchasesRepository {
     let database: PurchasesDatabase
     
     init(
-        database: PurchasesDatabase = PurchasesDatabaseImpl(database: Database.shared)
+        database: PurchasesDatabase = PurchasesDatabaseImpl(database: DatabaseImpl.shared)
     ) {
         self.database = database
     }

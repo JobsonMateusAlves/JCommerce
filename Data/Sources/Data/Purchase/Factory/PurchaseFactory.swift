@@ -14,6 +14,6 @@ public struct PurchaseFactory {
     }
     
     static func makeDatabase() -> PurchasesDatabase {
-        PurchasesDatabaseImpl(database: Database.shared)
+        PurchasesDatabaseImpl(database: DatabaseImpl.shared)
     }
 }
