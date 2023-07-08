@@ -1,14 +1,15 @@
 //
-//  UIColor+Extension.swift
+//  Color+Extension.swift
 //  
 //
-//  Created by Jobson Mateus on 19/05/23.
+//  Created by Jobson Mateus on 10/06/23.
 //
 
-import UIKit
+import SwiftUI
 
-extension UIColor {
-    convenience init(hex: String) {
+extension Color {
+    
+    init(hex: String) {
         let hex: String = hex.trimmingCharacters(in: .alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
@@ -23,33 +24,35 @@ extension UIColor {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-        
+
         self.init(
+            .sRGB,
             red: Double(r) / 255,
             green: Double(g) / 255,
             blue: Double(b) / 255,
-            alpha: Double(a) / 255
+            opacity: Double(a) / 255
         )
     }
 }
 
+
 // MARK: - Background
-extension UIColor {
-    static let primaryBackgroundColor: UIColor = UIColor(hex: "F4F4F4")
-    static let secondaryBackgroundColor: UIColor = UIColor.white
+extension Color {
+    static let primaryBackgroundColor: Color = Color(hex: "F4F4F4")
+    static let secondaryBackgroundColor: Color = Color.white
 }
 
 // MARK: - Text
-extension UIColor {
-    static let primaryText: UIColor = UIColor.black
-    static let secondaryText: UIColor = UIColor(hex: "343434")
-    static let terciaryText: UIColor = UIColor.white
+extension Color {
+    static let primaryText: Color = Color.black
+    static let secondaryText: Color = Color(hex: "343434")
+    static let terciaryText: Color = Color.white
 }
 
 // MARK: - Other
-extension UIColor {
-    static let primaryColor: UIColor = UIColor(hex: "4F0894")
-    static let border: UIColor = UIColor.black.withAlphaComponent(0.1)
-    static let shadow: UIColor = UIColor.black
+extension Color {
+    static let primaryColor: Color = Color(hex: "4F0894")
+    static let border: Color = Color.black.opacity(0.1)
+    static let shadow: Color = Color.black
 }
 

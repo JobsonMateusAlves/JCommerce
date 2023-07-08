@@ -15,6 +15,7 @@
 		F60B7D652A146AD3004378A9 /* JCommerceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D642A146AD3004378A9 /* JCommerceTests.swift */; };
 		F60B7D6F2A146AD3004378A9 /* JCommerceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D6E2A146AD3004378A9 /* JCommerceUITests.swift */; };
 		F60B7D712A146AD3004378A9 /* JCommerceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B7D702A146AD3004378A9 /* JCommerceUITestsLaunchTests.swift */; };
+		F61011EE2A3596B700B1A0BF /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F61011ED2A3596B700B1A0BF /* info.plist */; };
 		F63101032A17341800CAB1BC /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = F63101022A17341800CAB1BC /* Presentation */; };
 		F63101052A17341D00CAB1BC /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = F63101042A17341D00CAB1BC /* Data */; };
 		F63101072A17341D00CAB1BC /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = F63101062A17341D00CAB1BC /* Domain */; };
@@ -25,6 +26,16 @@
 		F6DE6EF32A192549007F6D8D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EF22A192549007F6D8D /* MainCoordinator.swift */; };
 		F6DE6EF52A192593007F6D8D /* ProductsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EF42A192593007F6D8D /* ProductsCoordinator.swift */; };
 		F6DE6EF92A195BD4007F6D8D /* ProductDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE6EF82A195BD4007F6D8D /* ProductDetailCoordinator.swift */; };
+		F6FE58442A34EF3200EAC8F6 /* JCommerceSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FE58432A34EF3200EAC8F6 /* JCommerceSwiftUIApp.swift */; };
+		F6FE58462A34EF3200EAC8F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FE58452A34EF3200EAC8F6 /* ContentView.swift */; };
+		F6FE58482A34EF3400EAC8F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6FE58472A34EF3400EAC8F6 /* Assets.xcassets */; };
+		F6FE584B2A34EF3400EAC8F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6FE584A2A34EF3400EAC8F6 /* Preview Assets.xcassets */; };
+		F6FE58552A34EF3400EAC8F6 /* JCommerceSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FE58542A34EF3400EAC8F6 /* JCommerceSwiftUITests.swift */; };
+		F6FE585F2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FE585E2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.swift */; };
+		F6FE58612A34EF3500EAC8F6 /* JCommerceSwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FE58602A34EF3500EAC8F6 /* JCommerceSwiftUIUITestsLaunchTests.swift */; };
+		F6FE586D2A34F66C00EAC8F6 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = F6FE586C2A34F66C00EAC8F6 /* Data */; };
+		F6FE586F2A34F67600EAC8F6 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = F6FE586E2A34F67600EAC8F6 /* Domain */; };
+		F6FE58712A34F67C00EAC8F6 /* PresentationSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F6FE58702A34F67C00EAC8F6 /* PresentationSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +52,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = F60B7D492A146AD0004378A9;
 			remoteInfo = JCommerce;
+		};
+		F6FE58512A34EF3400EAC8F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F60B7D422A146AD0004378A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6FE58402A34EF3100EAC8F6;
+			remoteInfo = JCommerceSwiftUI;
+		};
+		F6FE585B2A34EF3500EAC8F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F60B7D422A146AD0004378A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6FE58402A34EF3100EAC8F6;
+			remoteInfo = JCommerceSwiftUI;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -59,6 +84,7 @@
 		F60B7D702A146AD3004378A9 /* JCommerceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCommerceUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F60B7D7D2A146AFF004378A9 /* Data */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Data; sourceTree = "<group>"; };
 		F60B7D832A146BAD004378A9 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
+		F61011ED2A3596B700B1A0BF /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		F63C7C372A1BD24400E27F3C /* ProductDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailFactory.swift; sourceTree = "<group>"; };
 		F63C7C392A1BD34900E27F3C /* ShoppingCartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartFactory.swift; sourceTree = "<group>"; };
 		F63C7C3B2A1BD4C000E27F3C /* ProductsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFactory.swift; sourceTree = "<group>"; };
@@ -67,6 +93,17 @@
 		F6DE6EF22A192549007F6D8D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F6DE6EF42A192593007F6D8D /* ProductsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCoordinator.swift; sourceTree = "<group>"; };
 		F6DE6EF82A195BD4007F6D8D /* ProductDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCoordinator.swift; sourceTree = "<group>"; };
+		F6FE58412A34EF3100EAC8F6 /* JCommerceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCommerceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6FE58432A34EF3200EAC8F6 /* JCommerceSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCommerceSwiftUIApp.swift; sourceTree = "<group>"; };
+		F6FE58452A34EF3200EAC8F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F6FE58472A34EF3400EAC8F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6FE584A2A34EF3400EAC8F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F6FE58502A34EF3400EAC8F6 /* JCommerceSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JCommerceSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6FE58542A34EF3400EAC8F6 /* JCommerceSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCommerceSwiftUITests.swift; sourceTree = "<group>"; };
+		F6FE585A2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JCommerceSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6FE585E2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCommerceSwiftUIUITests.swift; sourceTree = "<group>"; };
+		F6FE58602A34EF3500EAC8F6 /* JCommerceSwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCommerceSwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F6FE586B2A34EFC400EAC8F6 /* PresentationSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PresentationSwiftUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,18 +131,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F6FE583E2A34EF3100EAC8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FE586F2A34F67600EAC8F6 /* Domain in Frameworks */,
+				F6FE586D2A34F66C00EAC8F6 /* Data in Frameworks */,
+				F6FE58712A34F67C00EAC8F6 /* PresentationSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE584D2A34EF3400EAC8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE58572A34EF3500EAC8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		F60B7D412A146AD0004378A9 = {
 			isa = PBXGroup;
 			children = (
+				F6FE586B2A34EFC400EAC8F6 /* PresentationSwiftUI */,
 				F646D0512A146BD7009617DF /* Presentation */,
 				F60B7D832A146BAD004378A9 /* Domain */,
 				F60B7D7D2A146AFF004378A9 /* Data */,
 				F60B7D4C2A146AD0004378A9 /* JCommerce */,
 				F60B7D632A146AD3004378A9 /* JCommerceTests */,
 				F60B7D6D2A146AD3004378A9 /* JCommerceUITests */,
+				F6FE58422A34EF3200EAC8F6 /* JCommerceSwiftUI */,
+				F6FE58532A34EF3400EAC8F6 /* JCommerceSwiftUITests */,
+				F6FE585D2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests */,
 				F60B7D4B2A146AD0004378A9 /* Products */,
 				F63101012A17341800CAB1BC /* Frameworks */,
 			);
@@ -117,6 +182,9 @@
 				F60B7D4A2A146AD0004378A9 /* JCommerce.app */,
 				F60B7D602A146AD3004378A9 /* JCommerceTests.xctest */,
 				F60B7D6A2A146AD3004378A9 /* JCommerceUITests.xctest */,
+				F6FE58412A34EF3100EAC8F6 /* JCommerceSwiftUI.app */,
+				F6FE58502A34EF3400EAC8F6 /* JCommerceSwiftUITests.xctest */,
+				F6FE585A2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +249,43 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		F6FE58422A34EF3200EAC8F6 /* JCommerceSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				F6FE58432A34EF3200EAC8F6 /* JCommerceSwiftUIApp.swift */,
+				F6FE58452A34EF3200EAC8F6 /* ContentView.swift */,
+				F6FE58472A34EF3400EAC8F6 /* Assets.xcassets */,
+				F6FE58492A34EF3400EAC8F6 /* Preview Content */,
+				F61011ED2A3596B700B1A0BF /* info.plist */,
+			);
+			path = JCommerceSwiftUI;
+			sourceTree = "<group>";
+		};
+		F6FE58492A34EF3400EAC8F6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F6FE584A2A34EF3400EAC8F6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F6FE58532A34EF3400EAC8F6 /* JCommerceSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F6FE58542A34EF3400EAC8F6 /* JCommerceSwiftUITests.swift */,
+			);
+			path = JCommerceSwiftUITests;
+			sourceTree = "<group>";
+		};
+		F6FE585D2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F6FE585E2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.swift */,
+				F6FE58602A34EF3500EAC8F6 /* JCommerceSwiftUIUITestsLaunchTests.swift */,
+			);
+			path = JCommerceSwiftUIUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -242,6 +347,64 @@
 			productReference = F60B7D6A2A146AD3004378A9 /* JCommerceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F6FE58402A34EF3100EAC8F6 /* JCommerceSwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6FE58682A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUI" */;
+			buildPhases = (
+				F6FE583D2A34EF3100EAC8F6 /* Sources */,
+				F6FE583E2A34EF3100EAC8F6 /* Frameworks */,
+				F6FE583F2A34EF3100EAC8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JCommerceSwiftUI;
+			packageProductDependencies = (
+				F6FE586C2A34F66C00EAC8F6 /* Data */,
+				F6FE586E2A34F67600EAC8F6 /* Domain */,
+				F6FE58702A34F67C00EAC8F6 /* PresentationSwiftUI */,
+			);
+			productName = JCommerceSwiftUI;
+			productReference = F6FE58412A34EF3100EAC8F6 /* JCommerceSwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F6FE584F2A34EF3400EAC8F6 /* JCommerceSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6FE58692A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUITests" */;
+			buildPhases = (
+				F6FE584C2A34EF3400EAC8F6 /* Sources */,
+				F6FE584D2A34EF3400EAC8F6 /* Frameworks */,
+				F6FE584E2A34EF3400EAC8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6FE58522A34EF3400EAC8F6 /* PBXTargetDependency */,
+			);
+			name = JCommerceSwiftUITests;
+			productName = JCommerceSwiftUITests;
+			productReference = F6FE58502A34EF3400EAC8F6 /* JCommerceSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F6FE58592A34EF3500EAC8F6 /* JCommerceSwiftUIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6FE586A2A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUIUITests" */;
+			buildPhases = (
+				F6FE58562A34EF3500EAC8F6 /* Sources */,
+				F6FE58572A34EF3500EAC8F6 /* Frameworks */,
+				F6FE58582A34EF3500EAC8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6FE585C2A34EF3500EAC8F6 /* PBXTargetDependency */,
+			);
+			name = JCommerceSwiftUIUITests;
+			productName = JCommerceSwiftUIUITests;
+			productReference = F6FE585A2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -263,6 +426,17 @@
 						CreatedOnToolsVersion = 14.3;
 						TestTargetID = F60B7D492A146AD0004378A9;
 					};
+					F6FE58402A34EF3100EAC8F6 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					F6FE584F2A34EF3400EAC8F6 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = F6FE58402A34EF3100EAC8F6;
+					};
+					F6FE58592A34EF3500EAC8F6 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = F6FE58402A34EF3100EAC8F6;
+					};
 				};
 			};
 			buildConfigurationList = F60B7D452A146AD0004378A9 /* Build configuration list for PBXProject "JCommerce" */;
@@ -281,6 +455,9 @@
 				F60B7D492A146AD0004378A9 /* JCommerce */,
 				F60B7D5F2A146AD3004378A9 /* JCommerceTests */,
 				F60B7D692A146AD3004378A9 /* JCommerceUITests */,
+				F6FE58402A34EF3100EAC8F6 /* JCommerceSwiftUI */,
+				F6FE584F2A34EF3400EAC8F6 /* JCommerceSwiftUITests */,
+				F6FE58592A34EF3500EAC8F6 /* JCommerceSwiftUIUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -303,6 +480,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F60B7D682A146AD3004378A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE583F2A34EF3100EAC8F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FE584B2A34EF3400EAC8F6 /* Preview Assets.xcassets in Resources */,
+				F6FE58482A34EF3400EAC8F6 /* Assets.xcassets in Resources */,
+				F61011EE2A3596B700B1A0BF /* info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE584E2A34EF3400EAC8F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE58582A34EF3500EAC8F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,6 +547,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F6FE583D2A34EF3100EAC8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FE58462A34EF3200EAC8F6 /* ContentView.swift in Sources */,
+				F6FE58442A34EF3200EAC8F6 /* JCommerceSwiftUIApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE584C2A34EF3400EAC8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FE58552A34EF3400EAC8F6 /* JCommerceSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FE58562A34EF3500EAC8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FE58612A34EF3500EAC8F6 /* JCommerceSwiftUIUITestsLaunchTests.swift in Sources */,
+				F6FE585F2A34EF3500EAC8F6 /* JCommerceSwiftUIUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -358,6 +585,16 @@
 			isa = PBXTargetDependency;
 			target = F60B7D492A146AD0004378A9 /* JCommerce */;
 			targetProxy = F60B7D6B2A146AD3004378A9 /* PBXContainerItemProxy */;
+		};
+		F6FE58522A34EF3400EAC8F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6FE58402A34EF3100EAC8F6 /* JCommerceSwiftUI */;
+			targetProxy = F6FE58512A34EF3400EAC8F6 /* PBXContainerItemProxy */;
+		};
+		F6FE585C2A34EF3500EAC8F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6FE58402A34EF3100EAC8F6 /* JCommerceSwiftUI */;
+			targetProxy = F6FE585B2A34EF3500EAC8F6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -619,6 +856,142 @@
 			};
 			name = Release;
 		};
+		F6FE58622A34EF3500EAC8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JCommerceSwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JCommerceSwiftUI/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F6FE58632A34EF3500EAC8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JCommerceSwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JCommerceSwiftUI/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F6FE58642A34EF3500EAC8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JCommerceSwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JCommerceSwiftUI";
+			};
+			name = Debug;
+		};
+		F6FE58652A34EF3500EAC8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JCommerceSwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JCommerceSwiftUI";
+			};
+			name = Release;
+		};
+		F6FE58662A34EF3500EAC8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JCommerceSwiftUI;
+			};
+			name = Debug;
+		};
+		F6FE58672A34EF3500EAC8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8H83TMLWY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jobson.JCommerceSwiftUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JCommerceSwiftUI;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -658,6 +1031,33 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F6FE58682A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6FE58622A34EF3500EAC8F6 /* Debug */,
+				F6FE58632A34EF3500EAC8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6FE58692A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6FE58642A34EF3500EAC8F6 /* Debug */,
+				F6FE58652A34EF3500EAC8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6FE586A2A34EF3500EAC8F6 /* Build configuration list for PBXNativeTarget "JCommerceSwiftUIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6FE58662A34EF3500EAC8F6 /* Debug */,
+				F6FE58672A34EF3500EAC8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -672,6 +1072,18 @@
 		F63101062A17341D00CAB1BC /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
+		};
+		F6FE586C2A34F66C00EAC8F6 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		F6FE586E2A34F67600EAC8F6 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		F6FE58702A34F67C00EAC8F6 /* PresentationSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PresentationSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
